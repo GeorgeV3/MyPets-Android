@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Pets2</string>
+    <string name="imgpets" />
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="my_pets_information">My Pets Information</string>
+
+</resources>
