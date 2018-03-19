@@ -158,10 +158,25 @@ public class Pet {
         return comments;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
+
+    @Override
     public String toString() {
-        return "";
+        return "Pet{" +
+                "name='" + name + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender='" + gender + '\'' +
+                ", species='" + species + '\'' +
+                ", breed='" + breed + '\'' +
+                ", colour='" + colour + '\'' +
+                ", distinguishingMarks='" + distinguishingMarks + '\'' +
+                ", chipID='" + chipID + '\'' +
+                ", ownerName='" + ownerName + '\'' +
+                ", ownerAddress='" + ownerAddress + '\'' +
+                ", ownerPhone='" + ownerPhone + '\'' +
+                ", vetName='" + vetName + '\'' +
+                ", vetAddress='" + vetAddress + '\'' +
+                ", vetPhone='" + vetPhone + '\'' +
+                ", comments='" + comments + '\'' +
+                '}';
     }
 }
