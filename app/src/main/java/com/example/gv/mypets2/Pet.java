@@ -1,12 +1,13 @@
 package com.example.gv.mypets2;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Gv on 16/3/2018.
  */
 
-public class Pet {
+public class Pet implements Serializable {
     private String name;
     private String dateOfBirth;
     private String gender;

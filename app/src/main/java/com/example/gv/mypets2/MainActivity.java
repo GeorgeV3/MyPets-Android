@@ -1,8 +1,7 @@
 package com.example.gv.mypets2;
 
 
-import android.os.Parcelable;
-import android.os.PersistableBundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,23 +36,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
- /*       if (savedInstanceState!=null){
-            mPets= (ArrayList<Pet>) savedInstanceState.getSerializable("mPets");
-        } */
-
 
         mPets = new ArrayList<>();
 
-        mPets.add(new Pet ("Bella1", "22-11-2015", "Male", "Dog", "Unknown", "Black-White", "dededed", "dedede", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur"));
-        mPets.add(new Pet("Bella2", "12-11-1922", "Male1", "dede1", "ded1", "dede", "dededed", "dedede", "dedede", "dededed", "ddededed", "dededed", "dededed", "dededed", "eweee"));
-        mPets.add(new Pet("Bella3", "12-33-1233", "Male1", "dede1", "ded1", "dede", "dededed", "dedede", "dedede", "dededed", "ddededed", "dededed", "dededed", "dededed", "eweee"));
-        mPets.add(new Pet("Bella4", "02-12-2015", "Male1", "dede1", "ded1", "dede", "dededed", "dedede", "dedede", "dededed", "ddededed", "dededed", "dededed", "dededed", "eweee"));
-        mPets.add(new Pet("Bella5", "20-12-2012", "Male1", "dede1", "ded1", "dede", "dededed", "dedede", "dedede", "dededed", "ddededed", "dededed", "dededed", "dededed", "eweee"));
-        mPets.add(new Pet("Bella6", "01-02-2010", "Male1", "dede1", "ded1", "dede", "dededed", "dedede", "dedede", "dededed", "ddededed", "dededed", "dededed", "dededed", "eweee"));
-        mPets.add(new Pet("Bella7", "22-09-2014", "Male1", "dede1", "ded1", "dede", "dededed", "dedede", "dedede", "dededed", "ddededed", "dededed", "dededed", "dededed", "eweee"));
-
-
-
+        mPets.add(new Pet ("Bella1", "22-11-2015", "Male", "Dog", "Unknown", "Brown-White", "dededed", "123456789123456", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur"));
+        mPets.add(new Pet("Bella2", "12-11-1922", "Female", "Cat", "Unknown", "White-Orange", "dededed", "123456789123456", "Nancy Konsta", "Kifisia", "123456789", "Kiriakos Kiritsis", "Xalandri", "0123456789", "It likes to eat fishes and fried chicken."));
+        mPets.add(new Pet("Bella3", "12-33-1233", "Unknown", "Fish", "Unknown", "Orange-Gold", "dededed", "123456789123456", "Antwnis Padiris", "P.Faliro", "1523478694", "Basilis Zaxaris", "Kalithea", "0123456789", "It likes to make boubles , boubles."));
+        mPets.add(new Pet("Bella4", "02-12-2015", "Female", "Bird", "Unknown", "Yellow-Red", "dededed", "123456789123456", "Rania Anagnwstou", "Zwgrafou", "1523478694", "Kwstas Andreou", "Psiri", "0123456789", "it has the best eel that I have heard."));
+        mPets.add(new Pet("Bella5", "20-12-2012", "Female", "Lizard", "Unknown", "Green-Grey", "dededed", "123456789123456", "Nick Papadopoulos", "Pedeli", "1523478694", "Niki Karabela", "Melisia", "0123456789", "It sleep most of the day."));
+        mPets.add(new Pet("Bella6", "01-02-2010", "Male", "Rabbit", "Unknown", "Black", "dededed", "123456789123456", "Adreas Filis", "Nikaia", "1523478694", "Soula Zoubou", "Nikaia", "0123456789", "It likes to gets hug , very peaceful."));
+        mPets.add(new Pet("Bella7", "22-09-2014", "Female", "Dog", "Unknown", "White", "dededed", "123456789123456", "Anastasia Lioliou", "Glyfdada", "1523478694", "Maria Oikonomou", "Voula", "0123456789", "It likes to eat alot."));
 
 
          name =  findViewById(R.id.pet_name);
@@ -107,11 +95,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_back).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_back).setOnClickListener(
+                new View.OnClickListener() {
             @Override
-            public void onClick(View v) {if (position < mPets.size())
+            public void onClick(View v) {
+
+                if (position < mPets.size())
              position--;
-                if (position==0){position=mPets.size()-1;}
+
+                if (position==-1){position=mPets.size()-1;}
                 Log.d(TAG, "back: " + position);
 
                 name.setText(mPets.get(position).getName());
@@ -129,8 +121,13 @@ public class MainActivity extends AppCompatActivity {
                 vetaddress.setText(mPets.get(position).getVetAddress());
                 vetphone.setText(mPets.get(position).getVetPhone());
                 comments.setText(mPets.get(position).getComments());
+
             }
         });
+
+//       Method that utilizing  bundle savedinstancestate for remember position.
+
+
 
 // Method for put an url in Picasso by the user
         submit.setOnClickListener(new View.OnClickListener() {
@@ -142,13 +139,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if (savedInstanceState !=null){
+            position =  savedInstanceState.getInt("position");
+//          mImageView = savedInstanceState.getParcelable("16");
+
+
+        }
+
 
         firstPage();
-
     }
+
     private void firstPage() {
         name.setText(mPets.get(0).getName());
-        dateofbirth.setText((CharSequence) mPets.get(0).getDateOfBirth());
+        dateofbirth.setText(mPets.get(0).getDateOfBirth());
         gender.setText(mPets.get(0).getGender());
         species.setText(mPets.get(0).getSpecies());
         breed.setText(mPets.get(0).getBreed());
@@ -168,21 +172,56 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putString("name" , name.getText().toString());
+        outState.putString("1" ,dateofbirth.getText().toString());
+        outState.putString("2",gender.getText().toString());
+        outState.putString("3",species.getText().toString());
+        outState.putString("4", breed.getText().toString());
+        outState.putString("5",colour.getText().toString());
+        outState.putString("6" ,distinguishingmarks.getText().toString());
+        outState.putString("7" ,chipid.getText().toString());
+        outState.putString("8", ownername.getText().toString());
+        outState.putString("9", owneraddress.getText().toString());
+        outState.putString("10", ownerphone.getText().toString());
+        outState.putString("11",vetname.getText().toString());
+        outState.putString("12",vetaddress.getText().toString());
+        outState.putString("13",vetphone.getText().toString());
+        outState.putString("14",comments.getText().toString());
+ //       outState.putString("15",mEditText.toString());
+ //       outState.putParcelable("16" , (Parcelable) mImageView);
+
+
+        outState.putInt("position",position);
+
         super.onSaveInstanceState(outState);
-//        outState.putString("name" , name.getText().toString());
-//        outState.putString("1" ,dateofbirth.getText().toString());
-
- //       outState.putSerializable("mPets", (Serializable) mPets);
 
     }
 
-    @Override
+     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        name.setText(savedInstanceState.getString("name"));
+        dateofbirth.setText(savedInstanceState.getString("1"));
+        gender.setText(savedInstanceState.getString("2"));
+        species.setText(savedInstanceState.getString("3"));
+        breed.setText(savedInstanceState.getString("4"));
+        colour.setText(savedInstanceState.getString("5"));
+        distinguishingmarks.setText(savedInstanceState.getString("6"));
+        chipid.setText(savedInstanceState.getString("7"));
+        ownername.setText(savedInstanceState.getString("8"));
+        owneraddress.setText(savedInstanceState.getString("9"));
+        ownerphone.setText(savedInstanceState.getString("10"));
+        vetname.setText(savedInstanceState.getString("11"));
+        vetaddress.setText(savedInstanceState.getString("12"));
+        vetphone.setText(savedInstanceState.getString("13"));
+        comments.setText(savedInstanceState.getString("14"));
+ //       mEditText.setText(savedInstanceState.getString("15"));
+
+
+
+
         super.onRestoreInstanceState(savedInstanceState);
-//        name.setText(savedInstanceState.getString("name"));
-//        dateofbirth.setText(savedInstanceState.getString("1"));
-
-    }
-
+   }
 }
 

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"
         android:layout_marginStart="34dp"
-        android:text="My Pet Information"
+        android:text="@string/my_pet_information"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name:"
+                android:text="@string/name"
                 android:textStyle="bold" />
 
             <TextView
@@ -74,7 +74,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Specie:"
+                android:text="@string/specie"
                 android:textStyle="bold" />
 
             <TextView
@@ -95,7 +95,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender:"
+                android:text="@string/gender"
                 android:textStyle="bold" />
 
             <TextView
@@ -116,7 +116,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Birthday:"
+                android:text="@string/birthday"
                 android:textStyle="bold" />
 
             <TextView
@@ -147,7 +147,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Breed:"
+                android:text="@string/breed"
                 android:textStyle="bold" />
 
             <TextView
@@ -166,7 +166,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Colour:"
+                android:text="@string/colour"
                 android:textStyle="bold" />
 
             <TextView
@@ -186,7 +186,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ChipID:"
+                android:text="@string/chipid"
                 android:textStyle="bold" />
 
             <TextView
@@ -216,7 +216,7 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OwnerName:"
+                android:text="@string/ownername"
                 android:textStyle="bold" />
 
             <TextView
@@ -238,7 +238,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OwnerAdddress:"
+                android:text="@string/owneradddress"
                 android:textStyle="bold" />
 
             <TextView
@@ -259,7 +259,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OwnerPhone:"
+                android:text="@string/ownerphone"
                 android:textStyle="bold" />
 
             <TextView
@@ -280,7 +280,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VetName:"
+                android:text="@string/vetname"
                 android:textStyle="bold" />
 
             <TextView
@@ -301,7 +301,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VetAddress:"
+                android:text="@string/vetaddress"
                 android:textStyle="bold" />
 
             <TextView
@@ -322,7 +322,7 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VetPhone:"
+                android:text="@string/vetphone"
                 android:textStyle="bold" />
 
             <TextView
@@ -350,7 +350,7 @@
             android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DistinguishingMarks:"
+            android:text="@string/distinguishingmarks"
             android:textStyle="bold" />
 
         <TextView
@@ -377,8 +377,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="back"
-            android:onClick="back"
+            android:text="@string/back"
             android:textStyle="bold" />
 
         <Button
@@ -386,7 +385,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Next"
+            android:text="@string/next"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -407,7 +406,7 @@
         android:id="@+id/btn_sumbit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sumbit"
+        android:text="@string/sumbit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
