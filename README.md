@@ -14,6 +14,7 @@ You dont need any special development enviroment for running
 the app.
 
 Learnning Outcomes.
+ 
  How create a data class. 
  How create an arraylist.
  How onIstanceStateSave works.
