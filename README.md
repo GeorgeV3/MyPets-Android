@@ -16,13 +16,21 @@ the app.
 Learnning Outcomes.
 
 How create a data class.
+
 How create an arraylist.
+
 How onIstanceStateSave works.
+
 How use Adapter.
+
 How use MVC pattern.
+
 General layout customization.
+
 How make a loop for buttons.
+
 How use Piccaso.
+
 How make a layout interesting layouts for portrait and landscale mode.
 
 
