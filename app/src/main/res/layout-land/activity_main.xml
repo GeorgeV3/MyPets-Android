@@ -421,21 +421,21 @@
 
         <Button
             android:id="@+id/btn_back"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
-            android:textStyle="bold"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_next"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/next"
-            android:textStyle="bold"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
