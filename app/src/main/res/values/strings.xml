@@ -23,6 +23,9 @@
     <string name="vetphone">VetPhone:</string>
     <string name="distinguishingmarks">DistinguishingMarks:</string>
     <string name="sumbit">Sumbit</string>
+    <string name="pet_image">Pet image</string>
+    <string name="vet_information">Vet Information</string>
+    <string name="owner_information">Owner Information</string>
 
 
 </resources>

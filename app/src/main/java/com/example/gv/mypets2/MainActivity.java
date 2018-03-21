@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         mPets = new ArrayList<>();
 
-        mPets.add(new Pet ("Bella1", "22-11-2015", "Male", "Dog", "Unknown", "Brown-White", "dededed", "123456789123456", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur"));
-        mPets.add(new Pet("Bella2", "12-11-1922", "Female", "Cat", "Unknown", "White-Orange", "dededed", "123456789123456", "Nancy Konsta", "Kifisia", "123456789", "Kiriakos Kiritsis", "Xalandri", "0123456789", "It likes to eat fishes and fried chicken."));
-        mPets.add(new Pet("Bella3", "12-33-1233", "Unknown", "Fish", "Unknown", "Orange-Gold", "dededed", "123456789123456", "Antwnis Padiris", "P.Faliro", "1523478694", "Basilis Zaxaris", "Kalithea", "0123456789", "It likes to make boubles , boubles."));
-        mPets.add(new Pet("Bella4", "02-12-2015", "Female", "Bird", "Unknown", "Yellow-Red", "dededed", "123456789123456", "Rania Anagnwstou", "Zwgrafou", "1523478694", "Kwstas Andreou", "Psiri", "0123456789", "it has the best eel that I have heard."));
-        mPets.add(new Pet("Bella5", "20-12-2012", "Female", "Lizard", "Unknown", "Green-Grey", "dededed", "123456789123456", "Nick Papadopoulos", "Pedeli", "1523478694", "Niki Karabela", "Melisia", "0123456789", "It sleep most of the day."));
-        mPets.add(new Pet("Bella6", "01-02-2010", "Male", "Rabbit", "Unknown", "Black", "dededed", "123456789123456", "Adreas Filis", "Nikaia", "1523478694", "Soula Zoubou", "Nikaia", "0123456789", "It likes to gets hug , very peaceful."));
-        mPets.add(new Pet("Bella7", "22-09-2014", "Female", "Dog", "Unknown", "White", "dededed", "123456789123456", "Anastasia Lioliou", "Glyfdada", "1523478694", "Maria Oikonomou", "Voula", "0123456789", "It likes to eat alot."));
+        mPets.add(new Pet ("Bella1", "22-11-2015", "Male", "Dog", "Unknown", "Brown-White", "Uknown", "123456789123456", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur"));
+        mPets.add(new Pet("Bella2", "12-11-1922", "Female", "Cat", "Unknown", "White-Orange", "Uknown", "123456789123456", "Nancy Konsta", "Kifisia", "123456789", "Kiriakos Kiritsis", "Xalandri", "0123456789", "It likes to eat fishes and fried chicken."));
+        mPets.add(new Pet("Bella3", "12-33-1233", "Unknown", "Fish", "Unknown", "Orange-Gold", "Uknown", "123456789123456", "Antwnis Padiris", "P.Faliro", "1523478694", "Basilis Zaxaris", "Kalithea", "0123456789", "It likes to make boubles , boubles."));
+        mPets.add(new Pet("Bella4", "02-12-2015", "Female", "Bird", "Unknown", "Yellow-Red", "Uknown", "123456789123456", "Rania Anagnwstou", "Zwgrafou", "1523478694", "Kwstas Andreou", "Psiri", "0123456789", "it has the best eel that I have heard."));
+        mPets.add(new Pet("Bella5", "20-12-2012", "Female", "Lizard", "Unknown", "Green-Grey", "Uknown", "123456789123456", "Nick Papadopoulos", "Pedeli", "1523478694", "Niki Karabela", "Melisia", "0123456789", "It sleep most of the day."));
+        mPets.add(new Pet("Bella6", "01-02-2010", "Male", "Rabbit", "Unknown", "Black", "Uknown", "123456789123456", "Adreas Filis", "Nikaia", "1523478694", "Soula Zoubou", "Nikaia", "0123456789", "It likes to gets hug , very peaceful."));
+        mPets.add(new Pet("Bella7", "22-09-2014", "Female", "Dog", "Unknown", "White", "Uknown", "123456789123456", "Anastasia Lioliou", "Glyfdada", "1523478694", "Maria Oikonomou", "Voula", "0123456789", "It likes to eat alot."));
 
 
          name =  findViewById(R.id.pet_name);
@@ -125,11 +125,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//       Method that utilizing  bundle savedinstancestate for remember position.
-
-
-
-// Method for put an url in Picasso by the user
+//      Method for put an url in Picasso by the user
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,10 +135,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//       Method that utilizing  bundle savedinstancestate for remember position.
         if (savedInstanceState !=null){
             position =  savedInstanceState.getInt("position");
 //          mImageView = savedInstanceState.getParcelable("16");
-
 
         }
 
@@ -218,10 +214,7 @@ public class MainActivity extends AppCompatActivity {
         comments.setText(savedInstanceState.getString("14"));
  //       mEditText.setText(savedInstanceState.getString("15"));
 
-
-
-
-        super.onRestoreInstanceState(savedInstanceState);
+         super.onRestoreInstanceState(savedInstanceState);
    }
 }
 

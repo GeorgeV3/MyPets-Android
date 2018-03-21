@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by Gv on 16/3/2018.
  */
 
-public class Pet implements Serializable {
+public class Pet {
     private String name;
     private String dateOfBirth;
     private String gender;

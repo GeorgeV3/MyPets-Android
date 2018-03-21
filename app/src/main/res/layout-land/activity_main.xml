@@ -21,21 +21,30 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:contentDescription="@string/pet_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pets" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="154dp"
-        android:layout_height="52dp"
+        android:layout_width="120dp"
+        android:layout_height="43dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/put_an_image_url"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btn_sumbit"
+        android:layout_width="95dp"
+        android:layout_height="41dp"
+        android:text="@string/sumbit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <TableLayout
         android:id="@+id/Petinfo1"
@@ -134,8 +143,8 @@
         android:id="@+id/Petinfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="440dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="385dp"
+        android:layout_marginTop="31dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -200,14 +209,23 @@
 
     </TableLayout>
 
-    <TableLayout
-        android:id="@+id/OwnerVetInfo"
+    <TextView
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="135dp"
+        android:text="Owner Information"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/Owner_Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/Petinfo1">
+        app:layout_constraintTop_toBottomOf="@+id/textView20">
 
         <TableRow
             android:layout_width="match_parent"
@@ -273,9 +291,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/pet_owneraddress" />
         </TableRow>
 
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="416dp"
+        android:layout_marginTop="135dp"
+        android:text="Vet Information"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/Vet_Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="384dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21">
+
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView12"
@@ -292,11 +332,12 @@
                 android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/pet_breed" />
+
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView6"
@@ -316,8 +357,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView13"
@@ -339,9 +380,10 @@
     </TableLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="440dp"
+        android:layout_marginStart="385dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Petinfo2">
@@ -351,6 +393,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/distinguishingmarks"
+            android:textAlignment="viewStart"
             android:textStyle="bold" />
 
         <TextView
@@ -358,7 +401,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@+id/pet_colour"
             tools:layout_editor_absoluteX="59dp" />
     </LinearLayout>
@@ -366,7 +409,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -401,13 +444,5 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_sumbit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sumbit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 </android.support.constraint.ConstraintLayout>
