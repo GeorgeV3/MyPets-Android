@@ -422,18 +422,20 @@
         <Button
             android:id="@+id/btn_back"
             style="@style/Widget.AppCompat.Button.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableStart="@drawable/ic_arrow_back_black_24dp"
             android:text="@string/back"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_next"
             style="@style/Widget.AppCompat.Button.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"
             android:text="@string/next"
             android:textStyle="bold" />
     </LinearLayout>

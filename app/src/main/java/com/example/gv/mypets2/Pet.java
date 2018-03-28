@@ -1,6 +1,6 @@
 package com.example.gv.mypets2;
 
-import java.io.Serializable;
+
 import java.util.Date;
 
 /**
