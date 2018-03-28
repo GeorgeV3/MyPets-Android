@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
- //       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 
 
@@ -47,14 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
         mPets = new ArrayList<>();
 
-        mPets.add(new Pet ("Bella1","22-11-2012", "Male", "Dog", "Unknown", "Brown-White", "Uknown", "123456789123456", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur"));
-        mPets.add(new Pet("Bella2", "12-11-1922", "Female", "Cat", "Unknown", "White-Orange", "Uknown", "123456789123456", "Nancy Konsta", "Kifisia", "123456789", "Kiriakos Kiritsis", "Xalandri", "0123456789", "It likes to eat fishes and fried chicken."));
+        try {
+            mPets.add(new Pet ("Bella1",sdf.parse("22-10-2013"), "Male", "Dog", "Unknown", "Brown-White", "Uknown", "123456789123456", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+ /*       mPets.add(new Pet("Bella2", "12-11-1922", "Female", "Cat", "Unknown", "White-Orange", "Uknown", "123456789123456", "Nancy Konsta", "Kifisia", "123456789", "Kiriakos Kiritsis", "Xalandri", "0123456789", "It likes to eat fishes and fried chicken."));
         mPets.add(new Pet("Bella3", "12-33-1233", "Unknown", "Fish", "Unknown", "Orange-Gold", "Uknown", "123456789123456", "Antwnis Padiris", "P.Faliro", "1523478694", "Basilis Zaxaris", "Kalithea", "0123456789", "It likes to make boubles , boubles."));
         mPets.add(new Pet("Bella4", "02-12-2015", "Female", "Bird", "Unknown", "Yellow-Red", "Uknown", "123456789123456", "Rania Anagnwstou", "Zwgrafou", "1523478694", "Kwstas Andreou", "Psiri", "0123456789", "it has the best eel that I have heard."));
         mPets.add(new Pet("Bella5", "20-12-2012", "Female", "Lizard", "Unknown", "Green-Grey", "Uknown", "123456789123456", "Nick Papadopoulos", "Pedeli", "1523478694", "Niki Karabela", "Melisia", "0123456789", "It sleep most of the day."));
         mPets.add(new Pet("Bella6", "01-02-2010", "Male", "Rabbit", "Unknown", "Black", "Uknown", "123456789123456", "Adreas Filis", "Nikaia", "1523478694", "Soula Zoubou", "Nikaia", "0123456789", "It likes to gets hug , very peaceful."));
         mPets.add(new Pet("Bella7", "22-09-2014", "Female", "Dog", "Unknown", "White", "Uknown", "123456789123456", "Anastasia Lioliou", "Glyfdada", "1523478694", "Maria Oikonomou", "Voula", "0123456789", "It likes to eat alot."));
-
+*/
 
          name =  findViewById(R.id.pet_name);
          dateofbirth = findViewById(R.id.pet_dateofbirth);
@@ -85,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "next: " + position);
 
                 name.setText(mPets.get(position).getName());
-                dateofbirth.setText(mPets.get(position).getDateOfBirth());
+                dateofbirth.setText((CharSequence) mPets.get(position).getDateOfBirth());
                 gender.setText(mPets.get(position).getGender());
                 species.setText(mPets.get(position).getSpecies());
                 breed.setText(mPets.get(position).getBreed());
@@ -115,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "back: " + position);
 
                 name.setText(mPets.get(position).getName());
-                dateofbirth.setText(mPets.get(position).getDateOfBirth());
+                dateofbirth.setText((CharSequence) mPets.get(position).getDateOfBirth());
                 gender.setText(mPets.get(position).getGender());
                 species.setText(mPets.get(position).getSpecies());
                 breed.setText(mPets.get(position).getBreed());
@@ -156,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void firstPage() {
         name.setText(mPets.get(0).getName());
-        dateofbirth.setText(mPets.get(0).getDateOfBirth());
+        dateofbirth.setText((CharSequence) mPets.get(0).getDateOfBirth());
         gender.setText(mPets.get(0).getGender());
         species.setText(mPets.get(0).getSpecies());
         breed.setText(mPets.get(0).getBreed());
