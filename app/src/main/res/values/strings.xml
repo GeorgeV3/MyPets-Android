@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">My Pets2</string>
+    <string name="imgpets" />
+
+
+
+    <string name="back">back</string>
+    <string name="next">Next</string>
+    <string name="my_pet_information">My Pet Information</string>
+    <string name="name">Name:</string>
+    <string name="put_an_image_url">Put an image Url</string>
+    <string name="specie">Specie:</string>
+    <string name="gender">Gender:</string>
+    <string name="birthday">Birthday:</string>
+    <string name="breed">Breed:</string>
+    <string name="colour">Colour:</string>
+    <string name="chipid">ChipID:</string>
+    <string name="ownername">OwnerName:</string>
+    <string name="owneradddress">OwnerAdddress:</string>
+    <string name="ownerphone">OwnerPhone:</string>
+    <string name="vetname">VetName:</string>
+    <string name="vetaddress">VetAddress:</string>
+    <string name="vetphone">VetPhone:</string>
+    <string name="distinguishingmarks">DistinguishingMarks:</string>
+    <string name="sumbit">Sumbit</string>
+    <string name="pet_image">Pet image</string>
+    <string name="vet_information">Vet Information</string>
+    <string name="owner_information">Owner Information</string>
+
+
+</resources>
