@@ -3,7 +3,6 @@
     <string name="imgpets" />
 
 
-
     <string name="back">back</string>
     <string name="next">Next</string>
     <string name="my_pet_information">My Pet Information</string>
@@ -26,6 +25,10 @@
     <string name="pet_image">Pet image</string>
     <string name="vet_information">Vet Information</string>
     <string name="owner_information">Owner Information</string>
+    <string name="cats">Cats</string>
+    <string name="dogs">Dogs</string>
+    <string name="others">Others</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

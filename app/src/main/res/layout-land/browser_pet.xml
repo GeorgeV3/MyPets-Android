@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gv.mypets2.MainActivity">
+    tools:context="com.example.gv.mypets2.BrowsePet">
 
     <TextView
         android:id="@+id/textView15"
@@ -419,7 +419,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+ <!--       <Button
             android:id="@+id/btn_back"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
@@ -438,6 +438,7 @@
             android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"
             android:text="@string/next"
             android:textStyle="bold" />
+            -->
     </LinearLayout>
 
     <TextView
