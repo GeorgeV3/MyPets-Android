@@ -19,7 +19,8 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
+import java.util.List;
 
 
 public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGestureListener {
@@ -53,7 +54,7 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         mPets.add(new Pet("Bella3", "12-33-1233", "Unknown", "Fish", "Unknown", "Orange-Gold", "Uknown", "123456789123456", "Antwnis Padiris", "P.Faliro", "1523478694", "Basilis Zaxaris", "Kalithea", "0123456789", "It likes to make boubles , boubles."));
         mPets.add(new Pet("Bella4", "02-12-2015", "Female", "Bird", "Unknown", "Yellow-Red", "Uknown", "123456789123456", "Rania Anagnwstou", "Zwgrafou", "1523478694", "Kwstas Andreou", "Psiri", "0123456789", "it has the best eel that I have heard."));
         mPets.add(new Pet("Bella5", "20-12-2012", "Female", "Lizard", "Unknown", "Green-Grey", "Uknown", "123456789123456", "Nick Papadopoulos", "Pedeli", "1523478694", "Niki Karabela", "Melisia", "0123456789", "It sleep most of the day."));
-        mPets.add(new Pet("Bella6", "01-02-2010", "Male", "Rabbit", "Unknown", "Black", "Uknown", "123456789123456", "Adreas Filis", "Nikaia", "1523478694", "Soula Zoubou", "Nikaia", "0123456789", "It likes to gets hug , very peaceful."));
+        mPets.add(new Pet("Bella6", "01-02-2010", "Male", "Cat", "Unknown", "Black", "Uknown", "123456789123456", "Adreas Filis", "Nikaia", "1523478694", "Soula Zoubou", "Nikaia", "0123456789", "It likes to gets hug , very peaceful."));
         mPets.add(new Pet("Bella7", "22-09-2014", "Female", "Dog", "Unknown", "White", "Uknown", "123456789123456", "Anastasia Lioliou", "Glyfdada", "1523478694", "Maria Oikonomou", "Voula", "0123456789", "It likes to eat alot."));
 
 
@@ -81,106 +82,57 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         detector = new GestureDetectorCompat(this,this);
 
 
-
-
-
+        //Get intent methods
         trigerEvent = getIntent().getExtras().getInt("cats");
         switch(trigerEvent) {
             case 1:
 
-              /*  for (position=0; position<mPets.size();position++)
-                    mPets.get(position).getSpecies().equals("Cat");
-*/
 
-                if (mPets.get(position).getSpecies().equals("Cat"))
+                List<Pet> catList = new ArrayList<>();
+                for (Pet pet : mPets){
+                    if(pet.getSpecies().equals("Cat")){
+                        catList.add(pet);
+                        displayPets(catList);
+                    }//else statment dont work...!!
+                    //else
+                        //  petView.setVisibility(View.GONE);
+                      //  noPets.setVisibility(View.VISIBLE);
 
-
-                    displayPets ();
-                else
-                    position++;
-
-
-
-                    break;
-
+                    }
         }
+
+
         trigerEvent = getIntent().getExtras().getInt("dogs");
         switch(trigerEvent) {
             case 2:
 
-              /*  for (position=0; position<mPets.size();position++)
-                    mPets.get(position).getSpecies().equals("Cat");
-*/
+                for (position=0; position<mPets.size();position++){
+                if (mPets.get(position).getSpecies().equals("Dog")) {
+                 //   displayPets();
+                    break;
+                } else
+                    //  petView.setVisibility(View.GONE);
+                    noPets.setVisibility(View.VISIBLE);
 
-                if (mPets.get(position).getSpecies().equals("Dog"))
-
-
-                    displayPets ();
-                else
-
-
-                break;
-
+                }
         }
+
         trigerEvent = getIntent().getExtras().getInt("others");
         switch(trigerEvent) {
             case 3:
 
-              /*  for (position=0; position<mPets.size();position++)
-                    mPets.get(position).getSpecies().equals("Cat");
-*/
-
-                if (mPets.get(position).getSpecies().equals(""))
-
-
-                    displayPets ();
-                else
-                    petView.setVisibility(View.GONE);
-                noPets.setVisibility(View.VISIBLE);
-
-                break;
-
+                List<Pet> otherPets = new ArrayList<>();
+                for (Pet pet : mPets){
+                    if(!pet.getSpecies().equals("Dog") && !pet.getSpecies().equals("Cat")){
+                        otherPets.add(pet);
+                        displayPets(otherPets);
+                    }// else
+                        //  petView.setVisibility(View.GONE);
+                        //  noPets.setVisibility(View.VISIBLE);
+                }
         }
 
 
-
-
-
-
-
-
-
-
-  /*      findViewById(R.id.btn_next).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-                if (position<mPets.size())
-                    position  ++;
-                if  (position == mPets.size()){ position =0;}
-                Log.d(TAG, "next: " + position);
-
-                displayPets ();
-
-            }
-        });
-
-        findViewById(R.id.btn_back).setOnClickListener(
-                new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (position < mPets.size())
-             position--;
-
-                if (position==-1){position=mPets.size()-1;}
-                Log.d(TAG, "back: " + position);
-
-                displayPets ();
-
-            }
-        });
-*/
 //      Method for put an url in Picasso by the user
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,25 +151,24 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         }
 
 
-        displayPets ();
     }
 
-    private void displayPets() {
-        name.setText(mPets.get(position).getName());
-        dateofbirth.setText(mPets.get(position).getDateOfBirth());
-        gender.setText(mPets.get(position).getGender());
-        species.setText(mPets.get(position).getSpecies());
-        breed.setText(mPets.get(position).getBreed());
-        colour.setText(mPets.get(position).getColour());
-        distinguishingmarks.setText(mPets.get(position).getDistinguishingMarks());
-        chipid.setText(mPets.get(position).getChipID());
-        ownername.setText(mPets.get(position).getOwnerName());
-        owneraddress.setText(mPets.get(position).getOwnerAddress());
-        ownerphone.setText(mPets.get(position).getOwnerPhone());
-        vetname.setText(mPets.get(position).getVetName());
-        vetaddress.setText(mPets.get(position).getVetAddress());
-        vetphone.setText(mPets.get(position).getVetPhone());
-        comments.setText(mPets.get(position).getComments());
+    private void displayPets(List<Pet> petlist) {
+        name.setText(petlist.get(position).getName());
+        dateofbirth.setText(petlist.get(position).getDateOfBirth());
+        gender.setText(petlist.get(position).getGender());
+        species.setText(petlist.get(position).getSpecies());
+        breed.setText(petlist.get(position).getBreed());
+        colour.setText(petlist.get(position).getColour());
+        distinguishingmarks.setText(petlist.get(position).getDistinguishingMarks());
+        chipid.setText(petlist.get(position).getChipID());
+        ownername.setText(petlist.get(position).getOwnerName());
+        owneraddress.setText(petlist.get(position).getOwnerAddress());
+        ownerphone.setText(petlist.get(position).getOwnerPhone());
+        vetname.setText(petlist.get(position).getVetName());
+        vetaddress.setText(petlist.get(position).getVetAddress());
+        vetphone.setText(petlist.get(position).getVetPhone());
+        comments.setText(petlist.get(position).getComments());
     }
 
 
@@ -272,6 +223,8 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
          super.onRestoreInstanceState(savedInstanceState);
    }
 
+
+// Method for triger touchEvents
     @Override
     public boolean onTouchEvent(MotionEvent event){
         return detector.onTouchEvent(event);
@@ -311,26 +264,101 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             // Right to left, your code
 
-            if (position<mPets.size())
-                position  ++;
-            if  (position == mPets.size()){ position =0;}
+            trigerEvent = getIntent().getExtras().getInt("cats");
+            switch(trigerEvent) {
+                case 1:
+
+
+                    List<Pet> catList = new ArrayList<>();
+                    for (Pet pet : mPets){
+                        if(pet.getSpecies().equals("Cat")){
+                            catList.add(pet);
+
+                        }//else
+                        //  petView.setVisibility(View.GONE);
+                        // noPets.setVisibility(View.VISIBLE);
+
+                    }
+                    if (position<catList.size())
+                        position++;
+                    if (position==catList.size()){position=0;}
+                    displayPets(catList);
+
+            }
+            trigerEvent = getIntent().getExtras().getInt("others");
+            switch(trigerEvent) {
+                case 3:
+
+                    List<Pet> otherPets = new ArrayList<>();
+                    for (Pet pet : mPets){
+                        if(!pet.getSpecies().equals("Dog") && !pet.getSpecies().equals("Cat")){
+                            otherPets.add(pet);
+                        }// else
+                        //  petView.setVisibility(View.GONE);
+                        //  noPets.setVisibility(View.VISIBLE);
+
+
+                    }
+                    if (position<otherPets.size())
+                    position++;
+                    if (position==otherPets.size()){position=0;}
+                    displayPets(otherPets);
+            }
+
             Log.d(TAG, "next: " + position);
 
-            displayPets ();
             return true;
         } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&     Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             // Left to right , your code
-            if (position < mPets.size())
-                position--;
 
-            if (position==-1){position=mPets.size()-1;}
-            Log.d(TAG, "back: " + position);
+            trigerEvent = getIntent().getExtras().getInt("cats");
+            switch(trigerEvent) {
+                case 1:
 
-            displayPets ();
+                    List<Pet> catList = new ArrayList<>();
+                    for (Pet pet : mPets){
+                        if(pet.getSpecies().equals("Cat")){
+                            catList.add(pet);
+                        }//else
+                        //  petView.setVisibility(View.GONE);
+                        // noPets.setVisibility(View.VISIBLE);
+
+                    }
+                    if (position<catList.size())
+                        position--;
+                    if (position==-1) { position=catList.size()-1;}
+                    displayPets(catList);
+
+            }
+            trigerEvent = getIntent().getExtras().getInt("others");
+            switch(trigerEvent) {
+                case 3:
+
+                    List<Pet> otherPets = new ArrayList<>();
+                    for (Pet pet : mPets){
+                        if(!pet.getSpecies().equals("Dog") && !pet.getSpecies().equals("Cat")){
+                            otherPets.add(pet);
+
+                        }// else
+                        //  petView.setVisibility(View.GONE);
+                        //  noPets.setVisibility(View.VISIBLE);
+
+
+                    }
+                    if (position<otherPets.size())
+                    position--;
+                    if (position==-1) { position=otherPets.size()-1;}
+                    displayPets(otherPets);
+
+            }
+
+             Log.d(TAG, "back: " + position);
+
             return true;
         }
 
         return false;
     }
 }
+
 
