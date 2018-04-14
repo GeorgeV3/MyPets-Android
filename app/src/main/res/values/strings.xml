@@ -29,6 +29,9 @@
     <string name="dogs">Dogs</string>
     <string name="others">Others</string>
     <string name="submit">Submit</string>
+    <string name="no_pets_of_that_specie">No Pets of that Species</string>
+    <string name="an_image_of_pets">An image of Pets.</string>
+    <string name="choose_your_favorite_species">Choose your favorite Species!</string>
 
 
 </resources>

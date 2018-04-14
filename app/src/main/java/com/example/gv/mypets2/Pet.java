@@ -23,9 +23,10 @@ public class Pet {
     private String vetAddress;
     private String vetPhone;
     private String comments;
+    private String imageUrl;
 
 
-    public Pet(String name, String dateOfBirth, String gender, String species, String breed, String colour, String distinguishingMarks, String chipID, String ownerName, String ownerAddress, String ownerPhone, String vetName, String vetAddress, String vetPhone, String comments) {
+    public Pet(String name, String dateOfBirth, String gender, String species, String breed, String colour, String distinguishingMarks, String chipID, String ownerName, String ownerAddress, String ownerPhone, String vetName, String vetAddress, String vetPhone, String comments , String imageUrl) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -41,6 +42,7 @@ public class Pet {
         this.vetAddress = vetAddress;
         this.vetPhone = vetPhone;
         this.comments = comments;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -99,9 +101,9 @@ public class Pet {
         return vetPhone;
     }
 
-    public String getComments() {
-        return comments;
-    }
+    public String getComments() { return comments; }
+
+    public String getImageUrl(){ return imageUrl; }
 
     @Override
     public String toString() {
@@ -121,6 +123,7 @@ public class Pet {
                 ", vetAddress='" + vetAddress + '\'' +
                 ", vetPhone='" + vetPhone + '\'' +
                 ", comments='" + comments + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
