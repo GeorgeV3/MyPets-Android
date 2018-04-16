@@ -10,6 +10,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -22,16 +23,22 @@ import java.util.Objects;
 public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private TextView  name , dateofbirth , gender , species ,breed ,colour , distinguishingmarks , chipid ,
-    ownername , owneraddress , ownerphone , vetname , vetaddress , vetphone , comments , noPets;
+    ownername , owneraddress , ownerphone , vetname , vetaddress , vetphone , comments;
     private ImageView mImageView;
-    private static ArrayList<Pet> mPets;
-    private int position;
+   // private static ArrayList<Pet> mPets;
+    private int position=0;
     String url;
     private static final String TAG = "BrowsePet";
 
     int triggerEvent;
     private GestureDetectorCompat detector;
     ConstraintLayout petView;
+    TableLayout noPets;
+
+    private List<Pet> catList = new ArrayList<>();
+    private List<Pet> dogList = new ArrayList<>();
+    private List<Pet> otherPets = new ArrayList<>();
+    private List<Pet> mPets = new ArrayList<>();
 
 
     @Override
@@ -43,7 +50,7 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
 
 
 
-        mPets = new ArrayList<>();
+
 
         mPets.add(new Pet ("Bella1","22-11-2012", "Male", "cat", "Unknown", "Brown-Black", "Uknown", "123456789123456", "George Verroiopoulos", "Marousi", "0123456789", "Panos Psaros", "Brilisia", "0123456789", "A nice dog with a shining fur",
                 "https://images.pexels.com/photos/326875/pexels-photo-326875.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350"));
@@ -83,10 +90,11 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
          vetphone= findViewById(R.id.pet_vetphone);
          comments = findViewById(R.id.pet_comments);
          mImageView = findViewById(R.id.imageView);
-        ConstraintLayout petView = findViewById(R.id.layout_pet);
-        noPets = findViewById(R.id.no_pets);
+         petView = findViewById(R.id.layout_pet);
+         noPets = findViewById(R.id.no_pets);
 
-        detector = new GestureDetectorCompat(this,this);
+         detector = new GestureDetectorCompat(this,this);
+
 
 
         //Get intent methods
@@ -94,18 +102,17 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         switch(triggerEvent) {
             case 1:
 
-
-                List<Pet> catList = new ArrayList<>();
                 for (Pet pet : mPets) {
-                    if (pet.getSpecies().equalsIgnoreCase("Cat"))
+                    if (pet.getSpecies().equalsIgnoreCase("Cat")) {
                         catList.add(pet);
-                    displayPets(catList);
+                        displayPets(catList);
+                    }
 
                 }
-                    //else statment  work... all the time!!
-                    /*else
+                    if (catList.isEmpty()){
                           petView.setVisibility(View.GONE);
-                        noPets.setVisibility(View.VISIBLE); */
+                        noPets.setVisibility(View.VISIBLE);
+                }
         }
 
 
@@ -113,15 +120,15 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         switch(triggerEvent) {
             case 2:
 
-                List<Pet> dogList = new ArrayList<>();
                 for (Pet pet : mPets) {
                     if (pet.getSpecies().equalsIgnoreCase("Dog")) {
                         dogList.add(pet);
                         displayPets(dogList);
-
-                    } else
-                          petView.setVisibility(View.GONE);
-                        noPets.setVisibility(View.VISIBLE);
+                    }
+                }
+                if (dogList.isEmpty()){
+                    petView.setVisibility(View.GONE);
+                    noPets.setVisibility(View.VISIBLE);
                 }
         }
 
@@ -130,20 +137,20 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         switch(triggerEvent) {
             case 3:
 
-                List<Pet> otherPets = new ArrayList<>();
                 for (Pet pet : mPets){
                     if(!pet.getSpecies().equalsIgnoreCase("Dog") && !pet.getSpecies().equalsIgnoreCase("Cat")){
                         otherPets.add(pet);
                         displayPets(otherPets);
 
-                    }// else
-                        //  petView.setVisibility(View.GONE);
-                        //  noPets.setVisibility(View.VISIBLE);
-                }
+                    }
+                } if (otherPets.isEmpty()){
+                petView.setVisibility(View.GONE);
+                noPets.setVisibility(View.VISIBLE);
+            }
         }
 
 
-//       Method that utilizing  bundle savedinstancestate for remember position.
+//       Method that utilizing  bundle savedinstancestate for remember position and image.
         if (savedInstanceState !=null){
             position =  savedInstanceState.getInt("position");
             url = savedInstanceState.getString("15");
@@ -223,7 +230,7 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
    }
 
 
-// Method for triger touchEvents
+// Method for trigger touchEvents
     @Override
     public boolean onTouchEvent(MotionEvent event){
         return detector.onTouchEvent(event);
@@ -263,63 +270,44 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             // Right to left, your code
 
+
             triggerEvent = Objects.requireNonNull(getIntent().getExtras()).getInt("cats");
             switch(triggerEvent) {
                 case 1:
-
-                    List<Pet> catList = new ArrayList<>();
-                    for (Pet pet : mPets){
-                        if(pet.getSpecies().equalsIgnoreCase("Cat")){
-                            catList.add(pet);
-
-                        }//else
-                        //  petView.setVisibility(View.GONE);
-                        // noPets.setVisibility(View.VISIBLE);
-
-                    }
-                    if (position<catList.size())
+                    if (catList.isEmpty()){
+                    petView.setVisibility(View.GONE);
+                    noPets.setVisibility(View.VISIBLE);
+                } else  {
                         position++;
-                    if (position==catList.size()){position=0;}
-                    displayPets(catList);
-
-
+                        if (position==catList.size()){position=0;}
+                        displayPets(catList);
+                    }
             }
             triggerEvent = getIntent().getExtras().getInt("dogs");
             switch(triggerEvent) {
                 case 2:
-
-                    List<Pet> dogList = new ArrayList<>();
-                    for (Pet pet : mPets) {
-                        if (pet.getSpecies().equalsIgnoreCase("Dog")) {
-                            dogList.add(pet);
-                        }else
-                            petView.setVisibility(View.GONE);
+                    if (dogList.isEmpty()){
+                        petView.setVisibility(View.GONE);
                         noPets.setVisibility(View.VISIBLE);
-
-                    }
-                    if (position<dogList.size())
+                    } else {
                         position++;
                     if (position==dogList.size()){position=0;}
-                    displayPets(dogList);
+                        displayPets(dogList);
+                    }
+
 
             }
             triggerEvent = getIntent().getExtras().getInt("others");
             switch(triggerEvent) {
                 case 3:
-
-                    List<Pet> otherPets = new ArrayList<>();
-                    for (Pet pet : mPets){
-                        if(!pet.getSpecies().equalsIgnoreCase("Dog") && !pet.getSpecies().equalsIgnoreCase("Cat")){
-                            otherPets.add(pet);
-                        }// else
-                        //  petView.setVisibility(View.GONE);
-                        //  noPets.setVisibility(View.VISIBLE);
-
+                    if (otherPets.isEmpty()) {
+                        petView.setVisibility(View.GONE);
+                        noPets.setVisibility(View.VISIBLE);
+                    }else {
+                        position++;
+                        if (position == otherPets.size()) {position = 0;}
+                        displayPets(otherPets);
                     }
-                    if (position<otherPets.size())
-                    position++;
-                    if (position==otherPets.size()){position=0;}
-                    displayPets(otherPets);
             }
 
             Log.d(TAG, "next: " + position);
@@ -331,57 +319,40 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
             triggerEvent = Objects.requireNonNull(getIntent().getExtras()).getInt("cats");
             switch(triggerEvent) {
                 case 1:
-
-                    List<Pet> catList = new ArrayList<>();
-                    for (Pet pet : mPets){
-                        if(pet.getSpecies().equalsIgnoreCase("Cat")){
-                            catList.add(pet);
-                        }/*else
-                          petView.setVisibility(View.GONE);
-                         noPets.setVisibility(View.VISIBLE);*/
-                    }
-
-                    if (position<catList.size())
+                    if (catList.isEmpty()) {
+                        petView.setVisibility(View.GONE);
+                        noPets.setVisibility(View.VISIBLE);
+                    }else {
                         position--;
-                    if (position==-1) { position=catList.size()-1;}
-                    displayPets(catList);
+                        if (position == -1) {position = catList.size() - 1;}
+                        displayPets(catList);
+                    }
             }
 
             triggerEvent = getIntent().getExtras().getInt("dogs");
             switch(triggerEvent) {
                 case 2:
-
-                    List<Pet> dogList = new ArrayList<>();
-                    for (Pet pet : mPets) {
-                        if (pet.getSpecies().equalsIgnoreCase("Dog")) {
-                            dogList.add(pet);
-
-                        } else
-                              petView.setVisibility(View.GONE);
-                            noPets.setVisibility(View.VISIBLE);
-                    }
-                    if (position<dogList.size())
+                    if (dogList.isEmpty()) {
+                    petView.setVisibility(View.GONE);
+                    noPets.setVisibility(View.VISIBLE);
+                }else {
                         position--;
-                    if (position==-1) { position=dogList.size()-1;}
-                    displayPets(dogList);
+                        if (position == -1) {position = dogList.size() - 1;}
+                        displayPets(dogList);
+                    }
             }
             triggerEvent = getIntent().getExtras().getInt("others");
             switch(triggerEvent) {
                 case 3:
-
-                    List<Pet> otherPets = new ArrayList<>();
-                    for (Pet pet : mPets){
-                        if(!pet.getSpecies().equalsIgnoreCase("Dog") && !pet.getSpecies().equalsIgnoreCase("Cat")){
-                            otherPets.add(pet);
-
-                        }// else
-                        //  petView.setVisibility(View.GONE);
-                        //  noPets.setVisibility(View.VISIBLE);
+                    if (otherPets.isEmpty()) {
+                        petView.setVisibility(View.GONE);
+                        noPets.setVisibility(View.VISIBLE);
+                    }else {
+                        position--;
+                        if (position == -1) {
+                            position = otherPets.size() - 1;}
+                        displayPets(otherPets);
                     }
-                    if (position<otherPets.size())
-                    position--;
-                    if (position==-1) { position=otherPets.size()-1;}
-                    displayPets(otherPets);
             }
 
              Log.d(TAG, "back: " + position);

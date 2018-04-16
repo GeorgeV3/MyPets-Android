@@ -6,23 +6,57 @@
     android:layout_height="match_parent"
     tools:context="com.example.gv.mypets2.BrowsePet">
 
-    <TextView
+    <TableLayout
         android:id="@+id/no_pets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_pets_of_that_specie"
-        android:textSize="25sp"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/layout_pet"
-        app:layout_constraintEnd_toEndOf="@+id/layout_pet"
-        app:layout_constraintHorizontal_bias="0.584"
-        app:layout_constraintStart_toStartOf="@+id/layout_pet"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
+        app:layout_constraintBottom_toTopOf="@+id/layout_pet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_pet">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="240dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/no_pets_of_that_specie"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_pet"
+                app:layout_constraintEnd_toEndOf="@+id/layout_pet"
+                app:layout_constraintStart_toStartOf="@+id/layout_pet"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.868" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/go_back_to_choose_another_species"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_pet"

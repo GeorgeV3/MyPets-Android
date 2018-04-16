@@ -25,13 +25,14 @@
     <string name="pet_image">Pet image</string>
     <string name="vet_information">Vet Information</string>
     <string name="owner_information">Owner Information</string>
-    <string name="cats">Cats</string>
-    <string name="dogs">Dogs</string>
-    <string name="others">Others</string>
+    <string name="cats">Cat</string>
+    <string name="dogs">Dog</string>
+    <string name="others">Other</string>
     <string name="submit">Submit</string>
-    <string name="no_pets_of_that_specie">No Pets of that Species</string>
+    <string name="no_pets_of_that_specie">No Pets of that Species!</string>
     <string name="an_image_of_pets">An image of Pets.</string>
-    <string name="choose_your_favorite_species">Choose your favorite Species!</string>
+    <string name="choose_your_favorite_species">Choose your favourite Species!</string>
+    <string name="go_back_to_choose_another_species">Go back to choose another Species.</string>
 
 
 </resources>
