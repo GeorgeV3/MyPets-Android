@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Pet {
     private String name;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String gender;
     private String species;
     private String breed;
@@ -26,7 +26,7 @@ public class Pet {
     private String imageUrl;
 
 
-    public Pet(String name, String dateOfBirth, String gender, String species, String breed, String colour, String distinguishingMarks, String chipID, String ownerName, String ownerAddress, String ownerPhone, String vetName, String vetAddress, String vetPhone, String comments , String imageUrl) {
+    public Pet(String name, Date dateOfBirth, String gender, String species, String breed, String colour, String distinguishingMarks, String chipID, String ownerName, String ownerAddress, String ownerPhone, String vetName, String vetAddress, String vetPhone, String comments , String imageUrl) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -49,7 +49,7 @@ public class Pet {
         return name;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
