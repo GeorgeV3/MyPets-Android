@@ -10,12 +10,14 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableLayout;
+
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +27,6 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
     private TextView  name , dateofbirth , gender , species ,breed ,colour , distinguishingmarks , chipid ,
     ownername , owneraddress , ownerphone , vetname , vetaddress , vetphone , comments;
     private ImageView mImageView;
-   // private static ArrayList<Pet> mPets;
     private int position=0;
     String url;
     private static final String TAG = "BrowsePet";
@@ -33,7 +34,7 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
     int triggerEvent;
     private GestureDetectorCompat detector;
     ConstraintLayout petView;
-    TableLayout noPets;
+    ConstraintLayout noPets;
 
     private List<Pet> catList = new ArrayList<>();
     private List<Pet> dogList = new ArrayList<>();
@@ -46,7 +47,8 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browser_pet);
 
- //       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 
 
@@ -107,11 +109,9 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
                         catList.add(pet);
                         displayPets(catList);
                     }
-
-                }
-                    if (catList.isEmpty()){
-                          petView.setVisibility(View.GONE);
-                        noPets.setVisibility(View.VISIBLE);
+                }if (catList.isEmpty()){
+                    petView.setVisibility(View.GONE);
+                    noPets.setVisibility(View.VISIBLE);
                 }
         }
 
@@ -125,8 +125,7 @@ public class BrowsePet extends AppCompatActivity implements GestureDetector.OnGe
                         dogList.add(pet);
                         displayPets(dogList);
                     }
-                }
-                if (dogList.isEmpty()){
+                }if (dogList.isEmpty()){
                     petView.setVisibility(View.GONE);
                     noPets.setVisibility(View.VISIBLE);
                 }
