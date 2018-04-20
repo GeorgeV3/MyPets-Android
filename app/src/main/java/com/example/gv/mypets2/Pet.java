@@ -101,6 +101,70 @@ public class Pet {
         return vetPhone;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public void setDistinguishingMarks(String distinguishingMarks) {
+        this.distinguishingMarks = distinguishingMarks;
+    }
+
+    public void setChipID(String chipID) {
+        this.chipID = chipID;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setOwnerAddress(String ownerAddress) {
+        this.ownerAddress = ownerAddress;
+    }
+
+    public void setOwnerPhone(String ownerPhone) {
+        this.ownerPhone = ownerPhone;
+    }
+
+    public void setVetName(String vetName) {
+        this.vetName = vetName;
+    }
+
+    public void setVetAddress(String vetAddress) {
+        this.vetAddress = vetAddress;
+    }
+
+    public void setVetPhone(String vetPhone) {
+        this.vetPhone = vetPhone;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public String getComments() { return comments; }
 
     public String getImageUrl(){ return imageUrl; }

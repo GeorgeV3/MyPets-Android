@@ -33,6 +33,8 @@
     <string name="an_image_of_pets">An image of Pets.</string>
     <string name="choose_your_favorite_species">Choose your favourite Species!</string>
     <string name="go_back_to_choose_another_species">Go back to choose another Species.</string>
+    <string name="an_image_from_my_pet">An image from my Pet</string>
+    <string name="pet_name">Pet Name :</string>
 
 
 </resources>
