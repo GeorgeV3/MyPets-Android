@@ -7,27 +7,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 public class MainActivity extends AppCompatActivity {
+
     private ListView listView;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-
-
     private List<Pet> mPets = new ArrayList<>();
     private BaseAdapter adapter;
+
 
     {
         try {
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list_species);
 
-        List<String> speciesList = new ArrayList<>();
+        final List<String> speciesList = new ArrayList<>();
         for (Pet pet : mPets){
             speciesList.add(pet.getSpecies());
         }
@@ -66,22 +62,18 @@ public class MainActivity extends AppCompatActivity {
         speciesList.clear();
         speciesList.addAll(species);
 
-
-            this.adapter = new ArrayAdapter<>(this,R.layout.activity_main_specieslist , R.id.species_list , speciesList);
+            this.adapter = new ArrayAdapter<>(this,R.layout.activity_main_specieslist , R.id.species_layout , speciesList);
             this.listView.setAdapter(this.adapter);
-
-
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                    String nameSpecie = speciesList.get(position);
                     Intent intent = new Intent(MainActivity.this , SecondActSpecies.class);
+                    intent.putExtra(SecondActSpecies.EXTRA_SPECIE , nameSpecie );
 
                     startActivity(intent);
-
-
-                }
+                    }
             });
 
     }
