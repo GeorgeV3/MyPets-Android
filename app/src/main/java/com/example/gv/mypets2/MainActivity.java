@@ -12,9 +12,12 @@ import android.widget.ListView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         for (Pet pet : mPets){
             speciesList.add(pet.getSpecies());
         }
-        Set<String> species = new LinkedHashSet<>(speciesList);
+        TreeSet<String> species = new TreeSet<>(speciesList);
         speciesList.clear();
         speciesList.addAll(species);
+
 
             this.adapter = new ArrayAdapter<>(this,R.layout.activity_main_specieslist , R.id.species_layout , speciesList);
             this.listView.setAdapter(this.adapter);
