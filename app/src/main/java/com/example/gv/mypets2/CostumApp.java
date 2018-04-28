@@ -29,8 +29,9 @@ public class CostumApp extends Application {
         if (BuildConfig.DEBUG){
             new AndroidObjectBrowser(boxStore).start(this);
         }
-        
-        Box<Pet> petBox = boxStore.boxFor(Pet.class);
+
+       /* Box<Pet> petBox = boxStore.boxFor(Pet.class);
+
 
         {
             try {
@@ -52,7 +53,7 @@ public class CostumApp extends Application {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
     }
     

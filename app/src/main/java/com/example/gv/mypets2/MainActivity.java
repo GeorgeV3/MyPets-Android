@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
     private BaseAdapter adapter;
-    private Query<Pet> petsQuery;
+
 
 
 
