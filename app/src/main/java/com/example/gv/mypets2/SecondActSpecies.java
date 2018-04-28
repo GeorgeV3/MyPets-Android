@@ -9,7 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+import io.objectbox.Box;
+import io.objectbox.query.Query;
 
 public class SecondActSpecies extends AppCompatActivity {
 
@@ -17,9 +22,6 @@ public class SecondActSpecies extends AppCompatActivity {
     private BaseAdapter adapter;
 
     public static final String EXTRA_SPECIE="species.name";
-    private List<Pet> specieList = new ArrayList<>();
-
-
 
 
     @Override
@@ -28,13 +30,12 @@ public class SecondActSpecies extends AppCompatActivity {
         setContentView(R.layout.activity_second_act_species);
 
         secListView = findViewById(R.id.sec_listview);
-        List<Pet> mPets = ((CostumApp) getApplication()).getmPets();
+        Box<Pet> petBox = ((CostumApp) getApplication()).getBoxStore().boxFor(Pet.class);
+        Query<Pet> query = petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE)).build();
 
-        for (Pet pet : mPets) {
-            if (pet.getSpecies().equalsIgnoreCase(getIntent().getStringExtra(EXTRA_SPECIE))) {
-                specieList.add(pet);
-                }
-        }
+        final List<Pet> specieList = query.find();
+
+
         this.adapter = new PetAdapter(this , specieList);
                 this.secListView.setAdapter(this.adapter);
 

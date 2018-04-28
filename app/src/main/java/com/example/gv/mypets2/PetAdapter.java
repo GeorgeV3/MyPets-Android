@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class PetAdapter extends BaseAdapter {
 
     private Context context;
@@ -55,10 +56,11 @@ public class PetAdapter extends BaseAdapter {
         TextView nameText = convertView.findViewById(R.id.name);
         TextView breedText = convertView.findViewById(R.id.breed_name);
         ImageView imageView = convertView.findViewById(R.id.imageView3);
-        Picasso.get().load(specieList.get(position).getImageUrl()).resize(300,220).centerCrop().into(imageView);
+
 
         nameText.setText(pet.getName());
         breedText.setText(pet.getBreed());
+        Picasso.get().load(specieList.get(position).getImageUrl()).resize(300,220).centerCrop().into(imageView);
         
         return convertView;
 

@@ -1,5 +1,6 @@
 package com.example.gv.mypets2;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,22 +9,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Arrays;
+
+import io.objectbox.query.Query;
+
+
+import io.objectbox.Box;
+
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
     private BaseAdapter adapter;
+    private Query<Pet> petsQuery;
+
 
 
 
@@ -34,16 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list_species);
 
-        List<Pet> mPets = ((CostumApp) getApplication()).getmPets();
+        Box<Pet> petBox = ((CostumApp) getApplication()).getBoxStore().boxFor(Pet.class);
 
-        final List<String> speciesList = new ArrayList<>();
-        for (Pet pet : mPets){
-            speciesList.add(pet.getSpecies());
-        }
-        TreeSet<String> species = new TreeSet<>(speciesList);
-        speciesList.clear();
-        speciesList.addAll(species);
-
+        final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
 
             this.adapter = new ArrayAdapter<>(this,R.layout.activity_main_specieslist , R.id.species_layout , speciesList);
             this.listView.setAdapter(this.adapter);
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String nameSpecie = speciesList.get(position);
+                   String nameSpecie = speciesList.get(position);
                     Intent intent = new Intent(MainActivity.this , SecondActSpecies.class);
                     intent.putExtra(SecondActSpecies.EXTRA_SPECIE , nameSpecie );
 

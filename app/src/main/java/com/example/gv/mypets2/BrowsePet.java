@@ -14,8 +14,11 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import io.objectbox.Box;
 
 
 public class BrowsePet extends AppCompatActivity {
@@ -26,11 +29,9 @@ public class BrowsePet extends AppCompatActivity {
     private ImageView mImageView;
     private int position=0;
     String url;
-    private List<Pet> specieList = new ArrayList<>();
 
 
     public static final String EXTRA_SPECIE2="species.name";
-
 
 
     @Override
@@ -55,20 +56,17 @@ public class BrowsePet extends AppCompatActivity {
          comments = findViewById(R.id.pet_comments);
          mImageView = findViewById(R.id.imageView);
 
-        List<Pet> mPets = ((CostumApp) getApplication()).getmPets();
+        Box<Pet> petBox = ((CostumApp) getApplication()).getBoxStore().boxFor(Pet.class);
 
         Intent intent = getIntent();
         position = Objects.requireNonNull(intent.getExtras()).getInt("Position");
 
-        for (Pet pet : mPets) {
-            if (pet.getSpecies().equalsIgnoreCase(getIntent().getStringExtra(EXTRA_SPECIE2))) {
-                specieList.add(pet);
-            }
-        }
+        final List<Pet> specieList =petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE2)).build().find();
 
         displayPets(specieList);
 
     }
+
 
     private void displayPets(List<Pet> petlist) {
         name.setText(petlist.get(position).getName());
