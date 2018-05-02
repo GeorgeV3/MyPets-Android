@@ -1,0 +1,94 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6650243044071983057",
+      "lastPropertyId": "17:4374114611957102187",
+      "name": "Pet",
+      "properties": [
+        {
+          "id": "1:8941492407106518797",
+          "name": "id"
+        },
+        {
+          "id": "2:1398350115879815529",
+          "name": "name"
+        },
+        {
+          "id": "3:5325333552184478068",
+          "name": "dateOfBirth"
+        },
+        {
+          "id": "4:1251266022293529212",
+          "name": "gender"
+        },
+        {
+          "id": "5:7372428967618779635",
+          "name": "species"
+        },
+        {
+          "id": "6:4989571819564598631",
+          "name": "breed"
+        },
+        {
+          "id": "7:4889418713602184978",
+          "name": "colour"
+        },
+        {
+          "id": "8:2242849038527119364",
+          "name": "distinguishingMarks"
+        },
+        {
+          "id": "9:9135789847838374370",
+          "name": "chipID"
+        },
+        {
+          "id": "10:1017180398346912012",
+          "name": "ownerName"
+        },
+        {
+          "id": "11:4194366429821922607",
+          "name": "ownerAddress"
+        },
+        {
+          "id": "12:337534753050627764",
+          "name": "ownerPhone"
+        },
+        {
+          "id": "13:8417059098241173734",
+          "name": "vetName"
+        },
+        {
+          "id": "14:2122687652796264690",
+          "name": "vetAddress"
+        },
+        {
+          "id": "15:8039958679099688990",
+          "name": "vetPhone"
+        },
+        {
+          "id": "16:2453582590973214558",
+          "name": "comments"
+        },
+        {
+          "id": "17:4374114611957102187",
+          "name": "imageUrl"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:6650243044071983057",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
