@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +22,6 @@ public class PetAdapter extends BaseAdapter {
     public PetAdapter(Context context, List<Pet> specieList) {
         this.context = context;
         this.specieList = specieList;
-
 
     }
 
@@ -48,7 +44,7 @@ public class PetAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(this.context);
-            convertView = inflater.inflate(R.layout.layout_pets, parent, false);
+            convertView = inflater.inflate(R.layout.layout_pets_adapter, parent, false);
         }
 
         Pet pet = (Pet) getItem(position);

@@ -9,14 +9,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Arrays;
-
-import io.objectbox.query.Query;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 
 import io.objectbox.Box;
-
+import io.objectbox.query.QueryBuilder;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list_species);
 
-        Box<Pet> petBox = ((CostumApp) getApplication()).getBoxStore().boxFor(Pet.class);
+        Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
 
         final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
+
 
             this.adapter = new ArrayAdapter<>(this,R.layout.activity_main_specieslist , R.id.species_layout , speciesList);
             this.listView.setAdapter(this.adapter);
@@ -46,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                    String nameSpecie = speciesList.get(position);
-                    Intent intent = new Intent(MainActivity.this , SecondActSpecies.class);
-                    intent.putExtra(SecondActSpecies.EXTRA_SPECIE , nameSpecie );
+                    Intent intent = new Intent(MainActivity.this , PetsListActivity.class);
+                    intent.putExtra(PetsListActivity.EXTRA_SPECIE , nameSpecie );
 
                     startActivity(intent);
                     }

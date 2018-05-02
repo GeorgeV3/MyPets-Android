@@ -13,15 +13,13 @@ import com.squareup.picasso.Picasso;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import io.objectbox.Box;
 
 
-public class BrowsePet extends AppCompatActivity {
+public class PetDetailsActivity extends AppCompatActivity {
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     private TextView  name , dateofbirth , gender , species ,breed ,colour , distinguishingmarks , chipid ,
@@ -37,7 +35,7 @@ public class BrowsePet extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.browser_pet);
+        setContentView(R.layout.pet_details);
 
          name =  findViewById(R.id.pet_name);
          dateofbirth = findViewById(R.id.pet_dateofbirth);
@@ -56,7 +54,7 @@ public class BrowsePet extends AppCompatActivity {
          comments = findViewById(R.id.pet_comments);
          mImageView = findViewById(R.id.imageView);
 
-        Box<Pet> petBox = ((CostumApp) getApplication()).getBoxStore().boxFor(Pet.class);
+        Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
 
         Intent intent = getIntent();
         position = Objects.requireNonNull(intent.getExtras()).getInt("Position");

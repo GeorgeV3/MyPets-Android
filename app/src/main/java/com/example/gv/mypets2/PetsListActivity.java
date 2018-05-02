@@ -8,21 +8,16 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+
 import java.util.List;
 
 import io.objectbox.Box;
 import io.objectbox.query.Query;
-import io.objectbox.query.QueryBuilder;
 
-public class SecondActSpecies extends AppCompatActivity {
+public class PetsListActivity extends AppCompatActivity {
 
     private ListView secListView;
     private BaseAdapter adapter;
-    private List<Pet> specieList = new ArrayList<>();
 
     public static final String EXTRA_SPECIE="species.name";
 
@@ -30,20 +25,15 @@ public class SecondActSpecies extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_act_species);
+        setContentView(R.layout.pets_list);
 
         secListView = findViewById(R.id.sec_listview);
-        Box<Pet> petBox = ((CostumApp) getApplication()).getBoxStore().boxFor(Pet.class);
+        Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
 
         Query<Pet> query = petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE)).build();
 
 
-
-
-
         final List<Pet> specieList = query.find();
-
-
 
         this.adapter = new PetAdapter(this , specieList);
                 this.secListView.setAdapter(this.adapter);
@@ -52,9 +42,9 @@ public class SecondActSpecies extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String nameSpecie = specieList.get(position).getSpecies();
-                        Intent intent = new Intent(SecondActSpecies.this , BrowsePet.class);
+                        Intent intent = new Intent(PetsListActivity.this , PetDetailsActivity.class);
                         intent.putExtra("Position" , position );
-                        intent.putExtra(BrowsePet.EXTRA_SPECIE2 ,nameSpecie);
+                        intent.putExtra(PetDetailsActivity.EXTRA_SPECIE2 ,nameSpecie);
 
                 startActivity(intent);
             }
