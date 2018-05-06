@@ -35,6 +35,7 @@
     <string name="go_back_to_choose_another_species">Go back to choose another Species.</string>
     <string name="an_image_from_my_pet">An image from my Pet</string>
     <string name="pet_name">Pet Name :</string>
+    <string name="menu_login_logout">menu_login_logout</string>
 
 
 </resources>
