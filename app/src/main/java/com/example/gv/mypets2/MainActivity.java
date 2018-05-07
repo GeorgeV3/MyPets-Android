@@ -102,16 +102,12 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
 
-        if (!session.loggedin())
-        {
+        if (!session.loggedin()) {
             Intent intent = new Intent(MainActivity.this , LoginActivity.class);
         startActivity(intent);
         return true;
-    }
-    else {logout();
-
+    } else {logout();
         }
-
         return super.onOptionsItemSelected(item);
     }
 

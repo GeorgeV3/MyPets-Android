@@ -1,64 +1,100 @@
 package com.example.gv.mypets2;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etUsername;
-    private EditText etPassword;
-    private EditText etConfirmPass;
-    private EditText etName;
-    private EditText etSurname;
+    private EditText userName;
+    private EditText password;
+    private EditText confirmPass;
+    private EditText firstName;
+    private EditText lastName;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etUsername = findViewById(R.id.user_username);
-        etPassword = findViewById(R.id.user_password);
-        etConfirmPass = findViewById(R.id.user_conf_password);
-        etName = findViewById(R.id.user_name);
-        etSurname = findViewById(R.id.user_surname);
+        userName = findViewById(R.id.user_username);
+        password = findViewById(R.id.user_password);
+        confirmPass = findViewById(R.id.user_conf_password);
+        firstName = findViewById(R.id.user_name);
+        lastName = findViewById(R.id.user_surname);
+
+        session = new Session(this);
 
         findViewById(R.id.btn_reg_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                String etPassword = password.getText().toString();
+                String etConfirmPass =confirmPass.getText().toString();
+
+                if (etPassword.equals(etConfirmPass)&& password.length()>6) {
+
+                    User user = new User(
+                            userName.getText().toString().trim(),
+                            password.getText().toString().trim(),
+                            firstName.getText().toString().trim(),
+                            lastName.getText().toString().trim()
+
+                    );
+
+                    sendRegister(user);
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this,"Password not match Confrim Password and must be above 6 characters",Toast.LENGTH_LONG).show();
+                }
 
             }
         });
 
 
     }
-    
-    private void register(){
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-        String confirmPass = etConfirmPass.getText().toString();
-        String name = etName.getText().toString();
-        String surname = etSurname.getText().toString();
-        if (username.isEmpty()){
-            Toast.makeText(RegisterActivity.this,"Username field empty",Toast.LENGTH_LONG).show();
-        }
-        if (!isPasswordValid(password)){
-            Toast.makeText(RegisterActivity.this,"Password to small , must be above 6 characters",Toast.LENGTH_LONG).show();
+    private void sendRegister(User user){
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("http://hodor.ait.gr:8080/myPet/api/")
+                .addConverterFactory(GsonConverterFactory.create());
 
-        }
-        if (!password.equals(confirmPass)){
-            Toast.makeText(RegisterActivity.this,"Password not match Confrim Password",Toast.LENGTH_LONG).show();
-        }
+        Retrofit retrofit = builder.build();
+
+        GitHubService service = retrofit.create(GitHubService.class);
+
+        Call<User> call = service.registerAccount(user);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful()) {
+
+                    Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_LONG).show();
+
+                    session.setLoggedin(true);
+                    Intent intent = new Intent(RegisterActivity.this , MainActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this,"Something went wrong",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
-
-    private boolean isPasswordValid(String password){
-        return password.length()>6;
-    }
-
 
 }
