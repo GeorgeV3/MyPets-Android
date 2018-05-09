@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = etUsernameInput.getText().toString();
-                String password = etPasswordInput.getText().toString();
+                String username = etUsernameInput.getText().toString().trim();
+                String password = etPasswordInput.getText().toString().trim();
                 if(validateLogin(username , password)) {
                      doLogin(username , password);
 

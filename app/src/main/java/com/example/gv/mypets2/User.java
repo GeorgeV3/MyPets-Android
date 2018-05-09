@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
 
-    private String userName;
+    String userName;
 
-    private String password;
+    String password;
 
-    private String firstName;
+    String firstName;
 
-    private String lastName;
+    String lastName;
 
     public User(String userName, String password, String firstName, String lastName) {
         this.userName = userName;
