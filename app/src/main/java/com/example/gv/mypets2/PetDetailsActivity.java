@@ -2,9 +2,12 @@ package com.example.gv.mypets2;
 
 import android.content.Intent;
 
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import android.widget.TextView;
@@ -13,13 +16,14 @@ import com.squareup.picasso.Picasso;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import io.objectbox.Box;
 
 
-public class PetDetailsActivity extends AppCompatActivity {
+public class PetDetailsActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     private TextView  name , dateofbirth , gender , species ,breed ,colour , distinguishingmarks , chipid ,
@@ -27,6 +31,9 @@ public class PetDetailsActivity extends AppCompatActivity {
     private ImageView mImageView;
     private int position=0;
     String url;
+    private GestureDetectorCompat detector;
+
+    private List<Pet> specieList = new ArrayList<>();
 
 
     public static final String EXTRA_SPECIE2="species.name";
@@ -54,16 +61,26 @@ public class PetDetailsActivity extends AppCompatActivity {
          comments = findViewById(R.id.pet_comments);
          mImageView = findViewById(R.id.imageView);
 
+        detector = new GestureDetectorCompat(this,this);
+
         Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
 
         Intent intent = getIntent();
         position = Objects.requireNonNull(intent.getExtras()).getInt("Position");
 
-        final List<Pet> specieList =petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE2)).build().find();
+         List<Pet> specieList2 =petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE2)).build().find();
 
-        displayPets(specieList);
+        displayPets(specieList2);
+
+
+        specieList = specieList2;
+
+
+
+
 
     }
+
 
 
     private void displayPets(List<Pet> petlist) {
@@ -85,6 +102,68 @@ public class PetDetailsActivity extends AppCompatActivity {
         url = petlist.get(position).getImageUrl();
         Picasso.get().load(url).resize(300,220).centerCrop().into(mImageView);
 
+    }
+    // Method for trigger touchEvents
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        return detector.onTouchEvent(event);
+
+    }
+
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        int SWIPE_THRESHOLD_VELOCITY = 200;
+        int SWIPE_MIN_DISTANCE = 120;
+        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+            // Right to left, your code
+
+
+
+                        position++;
+                        if (position==specieList.size()){position=0;}
+                        displayPets(specieList);
+
+
+            return true;
+        } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&     Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+            // Left to right , your code
+
+
+                        position--;
+                        if (position == -1) {position = specieList.size() - 1;}
+                        displayPets(specieList);
+
+
+            return true;
+        }
+
+        return false;
     }
 
 }

@@ -7,26 +7,27 @@
     tools:context=".RegisterActivity">
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
         android:layout_marginTop="4dp"
         android:text="@string/registration_form"
-        android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout11"
+        android:id="@+id/linearLayout9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="48dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
-        app:layout_constraintTop_toBottomOf="@+id/textView30">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView26"
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/username" />
+            android:text="Username " />
 
         <EditText
             android:id="@+id/user_username"
@@ -49,10 +50,10 @@
         android:id="@+id/linearLayout5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="48dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+        app:layout_constraintStart_toStartOf="@+id/linearLayout6"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView28"
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/password" />
+            android:text="Password" />
 
         <EditText
             android:id="@+id/user_password"
@@ -75,9 +76,10 @@
         android:id="@+id/linearLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
         android:layout_marginTop="12dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <TextView
@@ -86,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/confirm_password" />
+            android:text="Confirm Password" />
 
         <EditText
             android:id="@+id/user_conf_password"
@@ -101,17 +103,18 @@
         android:id="@+id/linearLayout7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="12dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+        app:layout_constraintStart_toStartOf="@+id/linearLayout9"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/Name" />
+            android:text="Name" />
 
         <EditText
             android:id="@+id/user_name"
@@ -126,12 +129,10 @@
         android:id="@+id/linearLayout8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="27dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout7"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <TextView
@@ -139,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/surname" />
+            android:text="Surname" />
 
         <EditText
             android:id="@+id/user_surname"
@@ -154,10 +155,10 @@
         android:id="@+id/btn_reg_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginTop="32dp"
         android:text="@string/register"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
 </android.support.constraint.ConstraintLayout>

@@ -36,6 +36,18 @@
     <string name="an_image_from_my_pet">An image from my Pet</string>
     <string name="pet_name">Pet Name :</string>
     <string name="menu_login_logout">menu_login_logout</string>
+    <string name="password">Password</string>
+    <string name="user_name">Username</string>
+    <string name="login">Login</string>
+    <string name="registration_form">Registration Form</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="surname">Surname</string>
+    <string name="register">Register</string>
+    <string name="register2">Register</string>
+    <string name="Name">Name</string>
+    <string name="please_loigin">- Please Loigin -</string>
+    <string name="please_login2">- Please Login -</string>
 
 
 </resources>
