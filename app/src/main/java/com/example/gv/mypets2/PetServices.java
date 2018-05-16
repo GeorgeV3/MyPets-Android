@@ -9,13 +9,12 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface GitHubService {
+public interface PetServices {
 
     @GET("user/{username}/{password}")
     Call<User> login(@Path("username")String username,@Path("password")String password);
 
     @POST("user")
-
-    Call<User>registerAccount(@Body User user);
+    Call<User> registerAccount(@Body User user);
 
 }

@@ -73,12 +73,8 @@ public class MyPetsApplication extends Application {
             edit.apply();
         }
 
-
-
         }
 
-
-    
     public BoxStore getBoxStore(){
         return boxStore;
     }

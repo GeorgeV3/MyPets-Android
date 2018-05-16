@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Retrofit retrofit = builder.build();
 
-        GitHubService service = retrofit.create(GitHubService.class);
+        PetServices service = retrofit.create(PetServices.class);
         Call<User> call =service.login(username , password);
         call.enqueue(new Callback<User>() {
             @Override
@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(LoginActivity.this,"Smthing wrong",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"Smthing wrong , cannot connect on server",Toast.LENGTH_LONG).show();
 
 
 

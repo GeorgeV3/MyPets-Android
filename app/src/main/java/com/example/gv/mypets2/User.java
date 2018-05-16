@@ -7,11 +7,8 @@ public class User {
 
 
     String userName;
-
     String password;
-
     String firstName;
-
     String lastName;
 
     public User(String userName, String password, String firstName, String lastName) {

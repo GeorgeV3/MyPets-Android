@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Retrofit retrofit = builder.build();
 
-        GitHubService service = retrofit.create(GitHubService.class);
+        PetServices service = retrofit.create(PetServices.class);
 
         Call<User> call = service.registerAccount(user);
         Log.i("register" , "register button click");
@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this,"Something went wrong",Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this,"Something went wrong , cannot connect on server",Toast.LENGTH_LONG).show();
 
             }
         });

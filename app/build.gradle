@@ -30,13 +30,13 @@ dependencies {
     implementation ('com.squareup.picasso:picasso:2.71828') {
         exclude group: 'com.android.support', module: 'exifinterface'}
 
-    debugCompile "io.objectbox:objectbox-android-objectbrowser:$objectboxVersion"
-    releaseCompile "io.objectbox:objectbox-android:$objectboxVersion"
+    debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectboxVersion"
+    releaseImplementation "io.objectbox:objectbox-android:$objectboxVersion"
 
-    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
 
 
 
