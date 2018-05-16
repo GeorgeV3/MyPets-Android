@@ -102,9 +102,12 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
+                    if (response.code()==404){
+                        Toast.makeText(LoginActivity.this,"The username or password is incorrect.",Toast.LENGTH_LONG).show();
+                    }
 
                     }else{
-                        Toast.makeText(LoginActivity.this,"The username or password is incorrect",Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,"Something has gone wrong.The Server is lazy.",Toast.LENGTH_LONG).show();
                     }
 
 

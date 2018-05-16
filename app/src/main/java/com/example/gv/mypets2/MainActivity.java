@@ -58,23 +58,15 @@ public class MainActivity extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (session.loggedin()){
+
                         String nameSpecie = speciesList.get(position);
                         Intent intent = new Intent(MainActivity.this , PetsListActivity.class);
                         intent.putExtra(PetsListActivity.EXTRA_SPECIE , nameSpecie );
                         startActivity(intent);
 
-                    } else{
-                        Toast.makeText(MainActivity.this,"You must login",Toast.LENGTH_LONG).show();
-
-                    }
-
                     }
             });
-
-
     }
-
 
 
     @Override
@@ -116,6 +108,4 @@ public class MainActivity extends AppCompatActivity {
         finish();
 
     }
-
-
 }
