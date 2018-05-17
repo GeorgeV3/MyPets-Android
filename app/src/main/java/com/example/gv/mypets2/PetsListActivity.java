@@ -101,7 +101,8 @@ public class PetsListActivity extends AppCompatActivity {
 
     private void logout(){
         session.setLoggedin(false);
-        finish();
+        Intent intent = new Intent(PetsListActivity.this, MainActivity.class);
+        startActivity(intent);
 
     }
 }
