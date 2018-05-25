@@ -1,53 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView2"
+    <fragment
+        android:id="@+id/frag_species_list"
         android:layout_width="wrap_content"
-        android:layout_height="171dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginStart="107dp"
-        android:contentDescription="@string/an_image_of_pets"
-        app:layout_constraintBottom_toTopOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pets" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/choose_your_favorite_species"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <ListView
-        android:id="@+id/list_species"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="9dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="1.0">
-
-    </ListView>
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:name="com.example.gv.mypets2.Fragment.MainActivityFragment"
+        tools:layout="@layout/fragment_species_list"/>
+</RelativeLayout>

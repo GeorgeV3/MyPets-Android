@@ -1,6 +1,8 @@
-package com.example.gv.mypets2;
+package com.example.gv.mypets2.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +14,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
+import com.example.gv.mypets2.Fragment.PetsListFragment;
+import com.example.gv.mypets2.MyPetsApplication;
+import com.example.gv.mypets2.Pet;
+import com.example.gv.mypets2.PetAdapter;
+import com.example.gv.mypets2.Pet_;
+import com.example.gv.mypets2.R;
+import com.example.gv.mypets2.Session;
 
 import java.util.List;
 
@@ -26,24 +36,56 @@ public class PetsListActivity extends AppCompatActivity {
     private String menuLogin = "Login";
     private String menuLogout = "Logout";
 
+
     public static final String EXTRA_SPECIE="species.name";
 
+
+    public static Intent getStartIntent(Context context, int speciesLocationInList) {
+        Intent intent = new Intent(context, PetsListActivity.class);
+        intent.putExtra(EXTRA_SPECIE, speciesLocationInList);
+
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pets_list);
 
-        session = new Session(this);
+        int speciesLocationInList = getIntent().getIntExtra(EXTRA_SPECIE, -1);
+
+        // Check that the activity is using the layout version with
+        // the fragment_container FrameLayout
+        if (findViewById(R.id.fragment_container) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            // Create a new Fragment to be placed in the activity layout
+            Fragment firstFragment = PetsListFragment.newInstance(speciesLocationInList);
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, firstFragment).commit();
+        }
+
+        /*session = new Session(this);
 
 
         secListView = findViewById(R.id.sec_listview);
-        Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
 
-        Query<Pet> query = petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE)).build();
+         Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
+         Query<Pet> query = petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE)).build();
+         public final List<Pet> specieList = query.find();
 
-
-        final List<Pet> specieList = query.find();
 
         this.adapter = new PetAdapter(this , specieList);
                 this.secListView.setAdapter(this.adapter);
@@ -61,7 +103,7 @@ public class PetsListActivity extends AppCompatActivity {
                             Toast.makeText(PetsListActivity.this,"You must login.",Toast.LENGTH_LONG).show();
                         }
             }
-        });
+        });*/
 
 }
     @Override
@@ -105,4 +147,5 @@ public class PetsListActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }

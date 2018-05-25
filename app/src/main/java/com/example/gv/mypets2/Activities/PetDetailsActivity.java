@@ -1,4 +1,4 @@
-package com.example.gv.mypets2;
+package com.example.gv.mypets2.Activities;
 
 import android.content.Intent;
 
@@ -12,6 +12,10 @@ import android.widget.ImageView;
 
 import android.widget.TextView;
 
+import com.example.gv.mypets2.MyPetsApplication;
+import com.example.gv.mypets2.Pet;
+import com.example.gv.mypets2.Pet_;
+import com.example.gv.mypets2.R;
 import com.squareup.picasso.Picasso;
 
 

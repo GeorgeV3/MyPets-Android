@@ -1,11 +1,10 @@
-package com.example.gv.mypets2;
+package com.example.gv.mypets2.Activities;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,28 +13,35 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.Comparator;
+import com.example.gv.mypets2.Fragment.MainActivityFragment;
+import com.example.gv.mypets2.Fragment.PetsListFragment;
+import com.example.gv.mypets2.MyPetsApplication;
+import com.example.gv.mypets2.Pet;
+import com.example.gv.mypets2.Pet_;
+import com.example.gv.mypets2.R;
+import com.example.gv.mypets2.Session;
+
 import java.util.List;
 import java.util.Arrays;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 
 import io.objectbox.Box;
-import io.objectbox.query.QueryBuilder;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityFragment.OnFragmentInteractionListener{
+
 
     private ListView listView;
     private BaseAdapter adapter;
     private String menuLogin = "Login";
     private String menuLogout = "Logout";
     private Session session;
+
+    /*Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
+
+    public  final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
+    */
 
 
 
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.list_species);
 
 
-        Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
+       /* Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
 
         final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
 
@@ -65,8 +71,23 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     }
-            });
+            });*/
     }
+    @Override
+    public void onSpeciesSelected(int speciesPosition) {
+        View fragmentContainer = findViewById(R.id.fragment_container);
+        boolean isDualPane = fragmentContainer != null &&
+                fragmentContainer.getVisibility() == View.VISIBLE;
+
+        if (isDualPane) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, PetsListFragment.newInstance(speciesPosition));
+            fragmentTransaction.commit();
+        } else {
+            startActivity(PetsListActivity.getStartIntent(this, speciesPosition));
+        }
+    }
+
 
 
     @Override

@@ -19,7 +19,8 @@ public class PetAdapter extends BaseAdapter {
     private Context context;
     private List<Pet> specieList;
 
-    public PetAdapter(Context context, List<Pet> specieList) {
+
+    public PetAdapter(Context context, int layout_pets_adapter, List<Pet> specieList) {
         this.context = context;
         this.specieList = specieList;
 
@@ -62,4 +63,5 @@ public class PetAdapter extends BaseAdapter {
 
 
     }
+
 }
