@@ -1,6 +1,6 @@
 package com.example.gv.mypets2.Fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,17 +28,17 @@ import io.objectbox.Box;
 
 public class MainActivityFragment extends Fragment {
 
+    private DataPassListener mListener;
 
-    public interface OnFragmentInteractionListener {
-        void onSpeciesSelected(int speciesLocationInList);
+
+    public interface DataPassListener {
+        void onSpeciesSelected(String speciesName);
     }
 
     //axristo..!
-    /*public static MainActivityFragment newInstance() {
+    public static MainActivityFragment newInstance() {
         return new MainActivityFragment();
-    }/*/
-
-    private OnFragmentInteractionListener mListener;
+    }
 
     public MainActivityFragment() {
         // Required empty public constructor
@@ -47,7 +47,6 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_species_list, container, false);
     }
@@ -61,7 +60,6 @@ public class MainActivityFragment extends Fragment {
 
         final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
 
-
         ListAdapter adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,speciesList);
 
         ListView listView = getActivity().findViewById(R.id.list_species);
@@ -69,12 +67,8 @@ public class MainActivityFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String nameSpecie = speciesList.get(position);
-                Intent intent = new Intent(getActivity(),PetsListActivity.class);
-                intent.putExtra(PetsListActivity.EXTRA_SPECIE , nameSpecie );
-                startActivity(intent);
-               // mListener.onSpeciesSelected(position);
+               String speciesName= speciesList.get(position);
+               mListener.onSpeciesSelected(speciesName);
             }
         });
     }
@@ -82,11 +76,11 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof DataPassListener) {
+            mListener = (DataPassListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement DataPassListener");
         }
     }
 

@@ -2,6 +2,9 @@ package com.example.gv.mypets2.Activities;
 
 
 import android.content.Intent;
+import android.support.media.ExifInterface;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +32,7 @@ import java.util.Arrays;
 import io.objectbox.Box;
 
 
-public class MainActivity extends AppCompatActivity implements MainActivityFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements MainActivityFragment.DataPassListener{
 
 
     private ListView listView;
@@ -38,12 +41,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     private String menuLogout = "Logout";
     private Session session;
 
-    /*Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
-
-    public  final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
-    */
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,33 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         setContentView(R.layout.activity_main);
 
         session = new Session(this);
-        listView = findViewById(R.id.list_species);
+ //       listView = findViewById(R.id.list_species);
+/*
+        //phone in portrait mode
+
+        if (findViewById(R.id.layout_portrait) !=null){
+
+            FragmentManager manager = this.getSupportFragmentManager();
+            manager.beginTransaction()
+                    .commit();
+
+        }
+
+        //phone in landscape
+
+        if (findViewById(R.id.layout_landscape) !=null){
+
+            FragmentManager manager = this.getSupportFragmentManager();
+            manager.beginTransaction()
+                    .commit();
+
+        }
+
+
+*/
+
+
+
 
 
        /* Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
@@ -73,21 +96,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
                     }
             });*/
     }
-    @Override
-    public void onSpeciesSelected(int speciesPosition) {
-        View fragmentContainer = findViewById(R.id.fragment_container);
-        boolean isDualPane = fragmentContainer != null &&
-                fragmentContainer.getVisibility() == View.VISIBLE;
-
-        if (isDualPane) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, PetsListFragment.newInstance(speciesPosition));
-            fragmentTransaction.commit();
-        } else {
-            startActivity(PetsListActivity.getStartIntent(this, speciesPosition));
-        }
-    }
-
 
 
     @Override
@@ -127,6 +135,27 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     private void logout(){
         session.setLoggedin(false);
         finish();
+
+    }
+
+    @Override
+    public void onSpeciesSelected(String speciesName) {
+       /* if (findViewById(R.id.layout_portrait) !=null){
+
+            startActivity(PetsListActivity.getStartIntent(this, speciesName));
+        }*/
+        View fragmentContainer = findViewById(R.id.fragment_container);
+        boolean isDualPane = fragmentContainer != null &&
+                fragmentContainer.getVisibility() == View.VISIBLE;
+
+        if (isDualPane) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, PetsListFragment.newInstance(speciesName));
+            fragmentTransaction.commit();
+        } else {
+            startActivity(PetsListActivity.getStartIntent(this, speciesName));
+        }
+
 
     }
 }
