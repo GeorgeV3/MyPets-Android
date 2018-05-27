@@ -54,20 +54,21 @@ public class PetsListActivity extends AppCompatActivity implements PetsListFragm
         session = new Session(this);
 
         String speciesName = getIntent().getStringExtra(EXTRA_SPECIE);
+        // Create a new Fragment to be placed in the activity layout
+        PetsListFragment firstFragment = PetsListFragment.newInstance(speciesName);
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
-        if (findViewById(R.id.fragment_container) != null) {
+           if (findViewById(R.id.fragment_container) != null){
 
             // However, if we're being restored from a previous state,
             // then we don't need to do anything and should return or else
             // we could end up with overlapping fragments.
-            if (savedInstanceState != null) {
+           if (savedInstanceState != null) {
                 return;
             }
 
             // Create a new Fragment to be placed in the activity layout
-            PetsListFragment firstFragment = PetsListFragment.newInstance(speciesName);
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
@@ -75,7 +76,14 @@ public class PetsListActivity extends AppCompatActivity implements PetsListFragm
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, firstFragment).commit();
+                    .add(R.id.fragment_container, firstFragment)
+                    .commit();
+        }
+        if (findViewById(R.id.layout_portrait) !=null) {
+            getSupportFragmentManager().beginTransaction()
+                    .remove(firstFragment)
+                    .commit();
+
         }
 }
 

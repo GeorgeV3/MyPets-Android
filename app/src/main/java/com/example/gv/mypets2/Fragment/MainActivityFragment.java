@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -28,6 +29,9 @@ import io.objectbox.Box;
 
 public class MainActivityFragment extends Fragment {
 
+    private BaseAdapter adapter;
+    private ListView listView;
+
     private DataPassListener mListener;
 
 
@@ -45,6 +49,13 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //setRetainInstance(true);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -56,14 +67,20 @@ public class MainActivityFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        listView = getActivity().findViewById(R.id.list_species);
+
         Box<Pet> petBox = ((MyPetsApplication) getActivity().getApplication()).getBoxStore().boxFor(Pet.class);
 
         final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
 
-        ListAdapter adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,speciesList);
+        this.adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_main_specieslist , R.id.species_layout , speciesList);
+        this.listView.setAdapter(this.adapter);
+
+
+       /* ListAdapter adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,speciesList);
 
         ListView listView = getActivity().findViewById(R.id.list_species);
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

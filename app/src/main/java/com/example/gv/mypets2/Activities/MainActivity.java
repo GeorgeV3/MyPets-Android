@@ -11,11 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
+
 import android.widget.Toast;
 
 import com.example.gv.mypets2.Fragment.MainActivityFragment;
@@ -36,8 +32,7 @@ import io.objectbox.Box;
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.DataPassListener,PetsListFragment.DataPassListener2 {
 
 
-    private ListView listView;
-    private BaseAdapter adapter;
+
     private String menuLogin = "Login";
     private String menuLogout = "Logout";
     private Session session;
@@ -49,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         setContentView(R.layout.activity_main);
 
         session = new Session(this);
+
 
     }
 
@@ -96,21 +92,28 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
 
     @Override
     public void onSpeciesSelected(String speciesName) {
-       /* if (findViewById(R.id.layout_portrait) !=null){
 
-            startActivity(PetsListActivity.getStartIntent(this, speciesName));
-        }*/
-        View fragmentContainer = findViewById(R.id.fragment_container);
-        boolean isDualPane = fragmentContainer != null &&
-                fragmentContainer.getVisibility() == View.VISIBLE;
+        if (findViewById(R.id.layout_portrait) !=null){
 
-        if (isDualPane) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, PetsListFragment.newInstance(speciesName));
-            fragmentTransaction.commit();
-        } else {
             startActivity(PetsListActivity.getStartIntent(this, speciesName));
         }
+
+        /*View fragmentContainer = findViewById(R.id.fragment_container);
+        boolean isDualPane = fragmentContainer != null &&
+                fragmentContainer.getVisibility() == View.VISIBLE;*/
+
+        if (findViewById(R.id.layout_landscape) !=null) {
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, PetsListFragment.newInstance(speciesName))
+                    .addToBackStack(null)
+                    .commit();
+        }
+        /*else {
+            getSupportFragmentManager().beginTransaction()
+                    .remove(PetsListFragment.newInstance(speciesName))
+                    .commit();
+        }*/
 
 
     }
