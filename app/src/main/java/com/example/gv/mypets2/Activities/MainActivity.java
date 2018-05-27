@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.gv.mypets2.Fragment.MainActivityFragment;
 import com.example.gv.mypets2.Fragment.PetsListFragment;
@@ -32,7 +33,7 @@ import java.util.Arrays;
 import io.objectbox.Box;
 
 
-public class MainActivity extends AppCompatActivity implements MainActivityFragment.DataPassListener{
+public class MainActivity extends AppCompatActivity implements MainActivityFragment.DataPassListener,PetsListFragment.DataPassListener2 {
 
 
     private ListView listView;
@@ -48,58 +49,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         setContentView(R.layout.activity_main);
 
         session = new Session(this);
- //       listView = findViewById(R.id.list_species);
-/*
-        //phone in portrait mode
 
-        if (findViewById(R.id.layout_portrait) !=null){
-
-            FragmentManager manager = this.getSupportFragmentManager();
-            manager.beginTransaction()
-                    .commit();
-
-        }
-
-        //phone in landscape
-
-        if (findViewById(R.id.layout_landscape) !=null){
-
-            FragmentManager manager = this.getSupportFragmentManager();
-            manager.beginTransaction()
-                    .commit();
-
-        }
-
-
-*/
-
-
-
-
-
-       /* Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
-
-        final List<String> speciesList= Arrays.asList(petBox.query().build().property(Pet_.species).distinct().findStrings());
-
-            this.adapter = new ArrayAdapter<>(this,R.layout.activity_main_specieslist , R.id.species_layout , speciesList);
-            this.listView.setAdapter(this.adapter);
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                        String nameSpecie = speciesList.get(position);
-                        Intent intent = new Intent(MainActivity.this , PetsListActivity.class);
-                        intent.putExtra(PetsListActivity.EXTRA_SPECIE , nameSpecie );
-                        startActivity(intent);
-
-                    }
-            });*/
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.login_logout_menu, menu);
         return true;
@@ -112,27 +67,28 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu){
-        if (session.loggedin()){
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (session.loggedin()) {
             menu.findItem(R.id.menuItem).setTitle(menuLogout);
-        }else{
+        } else {
             menu.findItem(R.id.menuItem).setTitle(menuLogin);
         }
         return super.onPrepareOptionsMenu(menu);
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         if (!session.loggedin()) {
-            Intent intent = new Intent(MainActivity.this , LoginActivity.class);
-        startActivity(intent);
-        return true;
-    } else {logout();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            return true;
+        } else {
+            logout();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void logout(){
+    private void logout() {
         session.setLoggedin(false);
         finish();
 
@@ -157,5 +113,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         }
 
 
+    }
+
+    @Override
+    public void onPetSelected(String specieName, int positionPet) {
+
+        if (session.loggedin()) {
+            Intent intent = new Intent(MainActivity.this, PetDetailsActivity.class);
+            intent.putExtra("Position", positionPet);
+            intent.putExtra(PetDetailsActivity.EXTRA_SPECIE2, specieName);
+            startActivity(intent);
+        }else {
+            Toast.makeText(MainActivity.this,"You must login.",Toast.LENGTH_LONG).show();
+        }
     }
 }

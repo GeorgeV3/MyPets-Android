@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -32,6 +33,7 @@ import io.objectbox.query.Query;
 public class PetsListFragment extends Fragment {
 
     private BaseAdapter adapter;
+    private String speciesName;
 
     public static final String EXTRA_TEXT = "species.name";
 
@@ -44,11 +46,18 @@ public class PetsListFragment extends Fragment {
         return fragment;
     }
 
+    private PetsListFragment.DataPassListener2 mListener;
+
+
+    public interface DataPassListener2 {
+        void onPetSelected(String specieName , int positionPet);
+    }
+
 
     public PetsListFragment() {
         // Required empty public constructor
     }
-     String speciesName;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +65,7 @@ public class PetsListFragment extends Fragment {
 
         if (getArguments() != null) {
 
-            speciesName = getArguments().getString(EXTRA_TEXT);
+           speciesName = getArguments().getString(EXTRA_TEXT);
 
 
         }
@@ -67,20 +76,22 @@ public class PetsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pets_list, container, false);
+       return inflater.inflate(R.layout.fragment_pets_list, container, false);
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
                 Box<Pet> petBox = ((MyPetsApplication) getActivity().getApplication()).getBoxStore().boxFor(Pet.class);
 
-                Query<Pet> query = petBox.query().equal(Pet_.species,getArguments().getString(speciesName)).build();
+                Query<Pet> query = petBox.query().equal(Pet_.species,speciesName).build();
 
                 final List<Pet> specieList = query.find();
 
-                this.adapter = new PetAdapter(getActivity(), specieList);
+                this.adapter = new PetAdapter(getContext(), specieList);
 
                 ListView listView = getActivity().findViewById(R.id.sec_listview);
                 listView.setAdapter(adapter);
@@ -88,9 +99,30 @@ public class PetsListFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                        String nameSpecie = specieList.get(position).getSpecies();
+                        mListener.onPetSelected(nameSpecie , position);
+
+
                     }
                 });
             }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof PetsListFragment.DataPassListener2) {
+            mListener = (PetsListFragment.DataPassListener2) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement DataPassListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
         }
 

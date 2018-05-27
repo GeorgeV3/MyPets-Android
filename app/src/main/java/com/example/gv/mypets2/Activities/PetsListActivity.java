@@ -30,17 +30,14 @@ import java.util.List;
 import io.objectbox.Box;
 import io.objectbox.query.Query;
 
-public class PetsListActivity extends AppCompatActivity {
+public class PetsListActivity extends AppCompatActivity implements PetsListFragment.DataPassListener2 {
 
-    private ListView secListView;
-    private BaseAdapter adapter;
+
     private Session session;
     private String menuLogin = "Login";
     private String menuLogout = "Logout";
 
-
     public static final String EXTRA_SPECIE="species.name";
-
 
     public static Intent getStartIntent(Context context, String speciesName) {
         Intent intent = new Intent(context, PetsListActivity.class);
@@ -54,7 +51,7 @@ public class PetsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pets_list);
 
-
+        session = new Session(this);
 
         String speciesName = getIntent().getStringExtra(EXTRA_SPECIE);
 
@@ -80,37 +77,23 @@ public class PetsListActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
         }
-
-       /* session = new Session(this);
-
-
-        secListView = findViewById(R.id.sec_listview);
-
-         Box<Pet> petBox = ((MyPetsApplication) getApplication()).getBoxStore().boxFor(Pet.class);
-         Query<Pet> query = petBox.query().equal(Pet_.species,getIntent().getStringExtra(EXTRA_SPECIE)).build();
-         final List<Pet> specieList = query.find();
-
-
-        this.adapter = new PetAdapter(this , specieList);
-                this.secListView.setAdapter(this.adapter);
-
-                secListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        if (session.loggedin()) {
-                            String nameSpecie = specieList.get(position).getSpecies();
-                            Intent intent = new Intent(PetsListActivity.this, PetDetailsActivity.class);
-                            intent.putExtra("Position", position);
-                            intent.putExtra(PetDetailsActivity.EXTRA_SPECIE2, nameSpecie);
-                            startActivity(intent);
-                        }else {
-                            Toast.makeText(PetsListActivity.this,"You must login.",Toast.LENGTH_LONG).show();
-                        }
-            }
-        });*/
-
 }
-   /* @Override
+
+    @Override
+    public void onPetSelected(String specieName, int positionPet) {
+        if (session.loggedin()) {
+            Intent intent = new Intent(PetsListActivity.this, PetDetailsActivity.class);
+            intent.putExtra("Position", positionPet);
+            intent.putExtra(PetDetailsActivity.EXTRA_SPECIE2, specieName);
+            startActivity(intent);
+        } else {
+            Toast.makeText(PetsListActivity.this, "You must login.", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.login_logout_menu, menu);
@@ -150,6 +133,6 @@ public class PetsListActivity extends AppCompatActivity {
         Intent intent = new Intent(PetsListActivity.this, MainActivity.class);
         startActivity(intent);
 
-    }*/
+    }
 
 }

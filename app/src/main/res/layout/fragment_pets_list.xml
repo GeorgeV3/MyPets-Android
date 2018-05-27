@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activities.PetsListActivity">
 
+
     <ListView
         android:id="@+id/sec_listview"
         android:layout_width="0dp"
