@@ -1,15 +1,17 @@
 package com.example.gv.mypets2;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-
-    String userName;
-    String password;
-    String firstName;
-    String lastName;
+    @SerializedName("userName")
+    private String userName;
+    @SerializedName("password")
+    private String password;
+    @SerializedName("firstName")
+    private String firstName;
+    @SerializedName("lastName")
+    private String lastName;
 
     public User(String userName, String password, String firstName, String lastName) {
         this.userName = userName;

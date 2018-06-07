@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,37 +68,50 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     private void sendRegister(User user){
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://hodor.ait.gr:8080/myPet/api/")
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(GsonConverterFactory.create(gson));
 
         Retrofit retrofit = builder.build();
 
         PetServices service = retrofit.create(PetServices.class);
 
-        Call<User> call = service.registerAccount(user);
-        Log.i("register" , "register button click");
+        Call<String> call = service.registerAccount(user);
+        Log.i("register" , user.toString());
 
-        call.enqueue(new Callback<User>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()) {
-
+                    Log.i("register" , "Successful");
                     Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_LONG).show();
-
                     session.setLoggedin(true);
                     Intent intent = new Intent(RegisterActivity.this , MainActivity.class);
                     startActivity(intent);
                 }
-                else {Toast.makeText(RegisterActivity.this,"Unsuccessful response",Toast.LENGTH_LONG).show();
+                else {
+                    Log.i("register" , response.code() + ": " + response.message());
+                    Toast.makeText(RegisterActivity.this,"Unsuccessful response",Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this,"Something went wrong , cannot connect on server",Toast.LENGTH_LONG).show();
-
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("register" , t.getMessage());
+                if (t.getMessage().equals("")) {
+                    Log.i("register" , "Successful");
+                    Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_LONG).show();
+                    session.setLoggedin(true);
+                    Intent intent = new Intent(RegisterActivity.this , MainActivity.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(RegisterActivity.this,"Something went wrong , cannot connect on server",Toast.LENGTH_LONG).show();
             }
         });
 

@@ -27,9 +27,6 @@ public class MyPetsApplication extends Application {
         super.onCreate();
 
         boxStore = MyObjectBox.builder().androidContext(MyPetsApplication.this).build();
-        if (BuildConfig.DEBUG){
-            new AndroidObjectBrowser(boxStore).start(this);
-        }
 
         //Delete drop all files from database
 
