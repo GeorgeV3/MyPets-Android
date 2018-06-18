@@ -1,4 +1,4 @@
-package com.example.gv.mypets2.Activities;
+package com.example.gv.mypets2.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

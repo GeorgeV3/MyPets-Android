@@ -1,8 +1,7 @@
-package com.example.gv.mypets2.Fragment;
+package com.example.gv.mypets2.fragments;
 
 import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,11 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 
-import com.example.gv.mypets2.Activities.PetsListActivity;
 import com.example.gv.mypets2.MyPetsApplication;
 import com.example.gv.mypets2.Pet;
 import com.example.gv.mypets2.Pet_;

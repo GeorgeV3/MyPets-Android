@@ -1,7 +1,6 @@
-package com.example.gv.mypets2.Fragment;
+package com.example.gv.mypets2.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,20 +10,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.example.gv.mypets2.Activities.PetDetailsActivity;
-import com.example.gv.mypets2.Activities.PetsListActivity;
 import com.example.gv.mypets2.MyPetsApplication;
 import com.example.gv.mypets2.Pet;
 import com.example.gv.mypets2.PetAdapter;
 import com.example.gv.mypets2.Pet_;
 import com.example.gv.mypets2.R;
-import com.example.gv.mypets2.Session;
 
-import java.util.Arrays;
 import java.util.List;
 
 import io.objectbox.Box;

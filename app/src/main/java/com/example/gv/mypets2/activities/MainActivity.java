@@ -1,11 +1,7 @@
-package com.example.gv.mypets2.Activities;
+package com.example.gv.mypets2.activities;
 
 
 import android.content.Intent;
-import android.support.media.ExifInterface;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,19 +10,10 @@ import android.view.MenuItem;
 
 import android.widget.Toast;
 
-import com.example.gv.mypets2.Fragment.MainActivityFragment;
-import com.example.gv.mypets2.Fragment.PetsListFragment;
-import com.example.gv.mypets2.MyPetsApplication;
-import com.example.gv.mypets2.Pet;
-import com.example.gv.mypets2.Pet_;
+import com.example.gv.mypets2.fragments.MainActivityFragment;
+import com.example.gv.mypets2.fragments.PetsListFragment;
 import com.example.gv.mypets2.R;
 import com.example.gv.mypets2.Session;
-
-import java.util.List;
-import java.util.Arrays;
-
-
-import io.objectbox.Box;
 
 
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.DataPassListener,PetsListFragment.DataPassListener2 {
