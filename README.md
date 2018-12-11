@@ -15,7 +15,7 @@ the app.
 
 Learnning Outcomes.
  
- I became well versed in Java. 
+- I became well versed in Java. 
 - How to manage a database like object box .
 - How onIstanceStateSave works and general the life cycle of mobile devices.
 - How to use Adapters.
