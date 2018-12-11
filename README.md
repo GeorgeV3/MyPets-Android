@@ -16,15 +16,15 @@ the app.
 Learnning Outcomes.
  
  I became well versed in Java. 
- How to manage a database like object box .
- How onIstanceStateSave works and general the life cycle of mobile devices.
- How to use Adapters.
- How to use MVC pattern.
- How to make a loop for buttons.
- How to use Piccaso.
- How to use Fragments.
- How to use Retrofit.
- How make a layout interesting layouts for portrait and landscale mode  and general layout customizations.
+- How to manage a database like object box .
+- How onIstanceStateSave works and general the life cycle of mobile devices.
+- How to use Adapters.
+- How to use MVC pattern.
+- How to make a loop for buttons.
+- How to use Piccaso.
+- How to use Fragments.
+- How to use Retrofit.
+- How make a layout interesting layouts for portrait and landscale mode  and general layout customizations.
 
 
 
