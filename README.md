@@ -1,6 +1,6 @@
 My pets android
 
-This is the second app on android for Ath-Tech.
+This is the second app on android for Ath-Tech College.
 The app is running on mobiles and tablets.
 We use android studio for develop the app.
 
@@ -15,16 +15,16 @@ the app.
 
 Learnning Outcomes.
  
- How create a data class. 
- How create an arraylist.
- How onIstanceStateSave works.
- How use Adapter.
- How use MVC pattern.
- General layout customization.
- How make a loop for buttons.
- How use Piccaso.
-
-How make a layout interesting layouts for portrait and landscale mode.
+ I became well versed in Java. 
+ How to manage a database like object box .
+ How onIstanceStateSave works and general the life cycle of mobile devices.
+ How to use Adapters.
+ How to use MVC pattern.
+ How to make a loop for buttons.
+ How to use Piccaso.
+ How to use Fragments.
+ How to use Retrofit.
+ How make a layout interesting layouts for portrait and landscale mode  and general layout customizations.
 
 
 
